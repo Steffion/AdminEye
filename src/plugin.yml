@@ -1,0 +1,12 @@
+name: AdminEye
+main: nl.Steffion.AdminEye.AdminEye
+version: 0.1.0_ALPHA
+authors:
+  - Steffion
+load: POSTWORLD
+commands:
+  AdminEye:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - ae
