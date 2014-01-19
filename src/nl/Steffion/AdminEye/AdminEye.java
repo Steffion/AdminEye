@@ -47,8 +47,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(), null, null,
 				"info", "Displays the plugin's info.", PermissionType.ALL,
-				new BasicCommands().new InfoCommand(), pdfFile.getName()
-						+ " [info/i]");
+				new BasicCommands().new InfoCommand(), null);
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(),
 				new String[] { "info" }, new String[] { "i" }, "info",
 				"Displays the plugin's info.", PermissionType.ALL,
@@ -241,7 +240,9 @@ public class AdminEye extends JavaPlugin implements Listener {
 			String kickPlayerName, String reason2) {
 		Player kickPlayer = Bukkit.getPlayer(kickPlayerName);
 
-		if (kickPlayer == null) {
+		// TODO kickall system
+
+		if (kickPlayer == null && kickPlayerName != null) {
 			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
 					.setMessage("error.playerNotFound", AdminEye.messages)
 					.changeVariable("playername", kickPlayerName).build();
