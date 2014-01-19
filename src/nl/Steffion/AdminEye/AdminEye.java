@@ -3,6 +3,7 @@ package nl.Steffion.AdminEye;
 import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -37,6 +38,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(config, "chat.header", "&9");
 		StefsAPI.ConfigHandler.addDefault(config, "chat.header_high",
 				"%H_______.[ %A%title%H ]._______");
+		StefsAPI.ConfigHandler
+				.addDefault(config, "chat.someone", "&2(Someone)");
 
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(), null, null,
 				"info", "Displays the plugin's info.", PermissionType.ALL,
@@ -166,5 +169,46 @@ public class AdminEye extends JavaPlugin implements Listener {
 		new BasicCommands().new UnknownCommand().execute(player, playerName,
 				cmd, label, args);
 		return true;
+	}
+
+	public static void broadcastAdminEyeMessage(String issuer, String message,
+			String enabled) {
+		String someone = AdminEye.config.getFile().getString("chat.someone");
+
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			if (StefsAPI.PermissionHandler.hasPermission(player, "someone",
+					PermissionType.MODERATOR, false)) {
+				someone = "%A" + issuer;
+			} else if (issuer == null) {
+				someone = AdminEye.config.getFile().getString("chat.console");
+			} else if (issuer == "0") {
+				someone = AdminEye.config.getFile().getString("chat.system");
+			}
+
+			StefsAPI.MessageHandler
+					.buildMessage()
+					.addSender(player.getName())
+					.setMessage("normal.broadcast", AdminEye.messages)
+					.changeVariable("someone", someone)
+					.changeVariable("message",
+							AdminEye.messages.getFile().getString(message))
+					.build();
+		}
+
+		if (issuer == null) {
+			someone = AdminEye.config.getFile().getString("chat.console");
+		} else if (issuer == "0") {
+			someone = AdminEye.config.getFile().getString("chat.system");
+		} else {
+			someone = "%A" + issuer;
+		}
+
+		StefsAPI.MessageHandler
+				.buildMessage()
+				.addSender("$")
+				.setMessage("normal.broadcast", AdminEye.messages)
+				.changeVariable("someone", someone)
+				.changeVariable("message",
+						AdminEye.messages.getFile().getString(message)).build();
 	}
 }
