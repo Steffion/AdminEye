@@ -10,3 +10,8 @@ commands:
     description: N/A
     aliases:
         - ae
+  kick:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - k
