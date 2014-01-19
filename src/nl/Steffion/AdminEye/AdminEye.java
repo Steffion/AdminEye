@@ -2,6 +2,7 @@ package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
+import nl.Steffion.AdminEye.Commands.KickCommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -39,7 +40,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(config, "chat.header_high",
 				"%H_______.[ %A%title%H ]._______");
 		StefsAPI.ConfigHandler
-				.addDefault(config, "chat.someone", "&2(Someone)");
+				.addDefault(config, "chat.someone", "&3(Someone)");
+		StefsAPI.ConfigHandler
+				.addDefault(config, "chat.console", "&7(Console)");
+		StefsAPI.ConfigHandler.addDefault(config, "chat.system", "&7(System)");
 
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(), null, null,
 				"info", "Displays the plugin's info.", PermissionType.ALL,
@@ -60,9 +64,20 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"Reloads all configs.", PermissionType.MODERATOR,
 				new BasicCommands().new ReloadCommand(), pdfFile.getName()
 						+ " <reload/r>");
+		StefsAPI.CommandHandler.registerCommand("kick", new String[] { "*" },
+				new String[] { "*" }, "kick", "Kicks a player.",
+				PermissionType.MODERATOR, new KickCommand(),
+				"kick <playername> [reason]");
+
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.kick", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.broadcast",
+				"%TAG%someone%N %message%N.");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
+				"kicked player %A%playername%N with the reason: %A%reason");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");
@@ -76,6 +91,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "error.commandNotFound",
 				"%TAG%ECouldn't find the command. Try %A/" + pdfFile.getName()
 						+ " <help/h> [page number] %Efor more info.");
+		StefsAPI.ConfigHandler.addDefault(messages, "error.notEnoughArguments",
+				"%TAG%EYou're missing arguments, correct syntax: %A%syntax");
+		StefsAPI.ConfigHandler.addDefault(messages, "error.playerNotFound",
+				"%TAG%ENo player found with the name '%A%playername%E'!");
 
 		StefsAPI.ConfigHandler
 				.addDefault(messages, "log.enabledPlugin",
@@ -172,43 +191,75 @@ public class AdminEye extends JavaPlugin implements Listener {
 	}
 
 	public static void broadcastAdminEyeMessage(String issuer, String message,
-			String enabled) {
-		String someone = AdminEye.config.getFile().getString("chat.someone");
-
-		for (Player player : Bukkit.getOnlinePlayers()) {
-			if (StefsAPI.PermissionHandler.hasPermission(player, "someone",
-					PermissionType.MODERATOR, false)) {
-				someone = "%A" + issuer;
-			} else if (issuer == null) {
-				someone = AdminEye.config.getFile().getString("chat.console");
-			} else if (issuer == "0") {
-				someone = AdminEye.config.getFile().getString("chat.system");
-			}
-
-			StefsAPI.MessageHandler
-					.buildMessage()
-					.addSender(player.getName())
-					.setMessage("normal.broadcast", AdminEye.messages)
-					.changeVariable("someone", someone)
-					.changeVariable("message",
-							AdminEye.messages.getFile().getString(message))
-					.build();
+			String enabled, String... variables) {
+		String someone;
+		message = AdminEye.messages.getFile().getString("normal." + message);
+		for (int i = variables.length; i >= 2; i--) {
+			message = message.replaceAll("%" + variables[i - 2],
+					variables[i - 1]);
 		}
 
-		if (issuer == null) {
+		if (AdminEye.config.getFile().getBoolean("broadcastEnabled." + enabled)) {
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				if (issuer == "$" || issuer == null) {
+					someone = AdminEye.config.getFile().getString(
+							"chat.console");
+				} else if (issuer == "#") {
+					someone = AdminEye.config.getFile()
+							.getString("chat.system");
+				} else if (StefsAPI.PermissionHandler.hasPermission(player,
+						"someone", PermissionType.MODERATOR, false)) {
+					someone = "%A" + issuer;
+				} else {
+					someone = AdminEye.config.getFile().getString(
+							"chat.someone");
+				}
+
+				StefsAPI.MessageHandler.buildMessage()
+						.addSender(player.getName())
+						.setMessage("normal.broadcast", AdminEye.messages)
+						.changeVariable("someone", someone)
+						.changeVariable("message", message).build();
+			}
+		}
+
+		if (issuer == "$" || issuer == null) {
 			someone = AdminEye.config.getFile().getString("chat.console");
-		} else if (issuer == "0") {
+		} else if (issuer == "#") {
 			someone = AdminEye.config.getFile().getString("chat.system");
 		} else {
 			someone = "%A" + issuer;
 		}
 
-		StefsAPI.MessageHandler
-				.buildMessage()
-				.addSender("$")
+		StefsAPI.MessageHandler.buildMessage().addSender("$")
 				.setMessage("normal.broadcast", AdminEye.messages)
 				.changeVariable("someone", someone)
-				.changeVariable("message",
-						AdminEye.messages.getFile().getString(message)).build();
+				.changeVariable("message", message).build();
+	}
+
+	public static void kickPlayer(Player player, String playerName,
+			String kickPlayerName, String reason2) {
+		Player kickPlayer = Bukkit.getPlayer(kickPlayerName);
+
+		if (kickPlayer == null) {
+			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
+					.setMessage("error.playerNotFound", AdminEye.messages)
+					.changeVariable("playername", kickPlayerName).build();
+			return;
+		}
+
+		String reason = "%TAG\n%NYou've been kicked! Reason: \n%A";
+
+		reason = reason
+				+ (reason2 == null ? "No reason given%N." : reason2 + "%N.");
+
+		AdminEye.broadcastAdminEyeMessage(playerName, "kicked", "kick",
+				"playername", kickPlayer.getName(), "reason",
+				(reason2 == null ? "No reason given" : reason2));
+
+		kickPlayer
+				.kickPlayer(StefsAPI.MessageHandler
+						.replaceColours(StefsAPI.MessageHandler
+								.replacePrefixes(reason)));
 	}
 }
