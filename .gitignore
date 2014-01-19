@@ -4,7 +4,6 @@
 # Other unneeded files.
 /bin
 /manifest.mf
-.classpath
 .settings.classpath
 .settings
 .project
