@@ -253,9 +253,15 @@ public class AdminEye extends JavaPlugin implements Listener {
 		reason = reason
 				+ (reason2 == null ? "No reason given%N." : reason2 + "%N.");
 
-		AdminEye.broadcastAdminEyeMessage(playerName, "kicked", "kick",
-				"playername", kickPlayer.getName(), "reason",
-				(reason2 == null ? "No reason given" : reason2));
+		AdminEye.broadcastAdminEyeMessage(
+				playerName,
+				"kicked",
+				"kick",
+				"playername",
+				kickPlayer.getName(),
+				"reason",
+				(reason2 == null ? "No reason given" : reason2.replaceAll("&u",
+						" ")));
 
 		kickPlayer
 				.kickPlayer(StefsAPI.MessageHandler
