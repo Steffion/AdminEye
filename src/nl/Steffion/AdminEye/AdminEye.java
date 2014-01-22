@@ -44,6 +44,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "chat.console", "&7(Console)");
 		StefsAPI.ConfigHandler.addDefault(config, "chat.system", "&7(System)");
+		StefsAPI.ConfigHandler
+				.addDefault(config, "chat.everyone", "&3Everyone");
 
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(), null, null,
 				"info", "Displays the plugin's info.", PermissionType.ALL,
@@ -76,7 +78,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.broadcast",
 				"%TAG%someone%N %message%N.");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
-				"kicked player %A%playername%N with the reason: %A%reason");
+				"kicked %A%playernames%Nwith the reason: %A%reason");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");
@@ -234,39 +236,5 @@ public class AdminEye extends JavaPlugin implements Listener {
 				.setMessage("normal.broadcast", AdminEye.messages)
 				.changeVariable("someone", someone)
 				.changeVariable("message", message).build();
-	}
-
-	public static void kickPlayer(Player player, String playerName,
-			String kickPlayerName, String reason2) {
-		Player kickPlayer = Bukkit.getPlayer(kickPlayerName);
-
-		// TODO kickall system
-
-		if (kickPlayer == null && kickPlayerName != null) {
-			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
-					.setMessage("error.playerNotFound", AdminEye.messages)
-					.changeVariable("playername", kickPlayerName).build();
-			return;
-		}
-
-		String reason = "%TAG\n%NYou've been kicked! Reason: \n%A";
-
-		reason = reason
-				+ (reason2 == null ? "No reason given%N." : reason2 + "%N.");
-
-		AdminEye.broadcastAdminEyeMessage(
-				playerName,
-				"kicked",
-				"kick",
-				"playername",
-				kickPlayer.getName(),
-				"reason",
-				(reason2 == null ? "No reason given" : reason2.replaceAll("&u",
-						" ")));
-
-		kickPlayer
-				.kickPlayer(StefsAPI.MessageHandler
-						.replaceColours(StefsAPI.MessageHandler
-								.replacePrefixes(reason)));
 	}
 }
