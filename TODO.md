@@ -15,10 +15,12 @@ We will list things which need to be added below.
 - [ ] Goto (aka tp).
 - [ ] Bring (aka summon).
 - [ ] Fly.
-- [ ] HP (heal command and set health command).
+- [x] HP (heal command and set health command).
+- [ ] Freeze (make them able to move their head though).
 
 More will be added.
 
 ### Other stuff
 ---
 - [ ] MySQL support.
+- [ ] Log all commands in file or MySQL table (when enabled).
