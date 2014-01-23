@@ -15,3 +15,9 @@ commands:
     description: N/A
     aliases:
         - k
+  hp:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - heal
+        - h

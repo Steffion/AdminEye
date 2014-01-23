@@ -2,6 +2,7 @@ package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
+import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
 
 import org.bukkit.Bukkit;
@@ -68,10 +69,15 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.CommandHandler.registerCommand("kick", new String[] { "*" },
 				new String[] { "*" }, "kick", "Kicks a player.",
 				PermissionType.MODERATOR, new KickCommand(),
-				"kick <playername> [reason]");
+				"kick <player name> [reason]");
+		StefsAPI.CommandHandler.registerCommand("hp", new String[] { "*" },
+				new String[] { "*" }, "hp", "Sets a players health.",
+				PermissionType.MODERATOR, new HPCommand(),
+				"hp <player name> [amount of hp]");
 
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
@@ -79,6 +85,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%TAG%someone%N %message%N.");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
 				"kicked %A%playernames%Nwith the reason: %A%reason");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
+				"set the health of %A%playernames%Nto %A%amount");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");
@@ -96,6 +104,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%TAG%EYou're missing arguments, correct syntax: %A%syntax");
 		StefsAPI.ConfigHandler.addDefault(messages, "error.playerNotFound",
 				"%TAG%ENo player found with the name '%A%playername%E'!");
+		StefsAPI.ConfigHandler.addDefault(messages, "error.notANumber",
+				"%TAG%E'%A%number%E' is not a number!");
 
 		StefsAPI.ConfigHandler
 				.addDefault(messages, "log.enabledPlugin",
