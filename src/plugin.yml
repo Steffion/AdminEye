@@ -24,3 +24,5 @@ commands:
   slay:
     usage: /<command>
     description: N/A
+    aliases:
+        - kill
