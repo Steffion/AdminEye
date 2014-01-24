@@ -21,3 +21,6 @@ commands:
     aliases:
         - heal
         - h
+  slay:
+    usage: /<command>
+    description: N/A

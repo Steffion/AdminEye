@@ -9,7 +9,7 @@ We will list things which need to be added below.
 - [x] Kick.
 - [ ] Ban (including temp ban and message on join).
 - [ ] Mute.
-- [ ] Slay.
+- [x] Slay.
 - [ ] Slap (fly up in the sky).
 - [ ] Votekick/voteban.
 - [ ] Goto (aka tp).

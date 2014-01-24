@@ -4,6 +4,7 @@ import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.SlayCommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -74,10 +75,15 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "hp", "Sets a players health.",
 				PermissionType.MODERATOR, new HPCommand(),
 				"hp <player name> [amount of hp]");
+		StefsAPI.CommandHandler.registerCommand("slay", new String[] { "*" },
+				new String[] { "*" }, "slay", "Kills a player.",
+				PermissionType.MODERATOR, new SlayCommand(),
+				"slay <player name>");
 
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.slay", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
@@ -87,6 +93,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"kicked %A%playernames%Nwith the reason: %A%reason");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
 				"set the health of %A%playernames%Nto %A%amount");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
+				"slayed %A%playernames%Nto death");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");
