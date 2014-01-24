@@ -17,6 +17,7 @@ We will list things which need to be added below.
 - [ ] Fly.
 - [x] HP (heal command and set health command).
 - [ ] Freeze (make them able to move their head though).
+- [ ] OP command (nicer interface).
 
 More will be added.
 
