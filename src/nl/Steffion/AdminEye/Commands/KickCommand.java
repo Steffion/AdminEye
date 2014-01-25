@@ -39,11 +39,13 @@ public class KickCommand extends ExecutedCommand {
 			return;
 		}
 
-		String finalReason = "%TAG\n%NYou've been kicked! Reason: \n%A";
+		String finalReason = AdminEye.messages.getFile().getString(
+				"normal.kickreason");
 		String kickedPlayers = "";
 
 		finalReason = finalReason
-				+ (reason == null ? "No reason given%N." : reason + "%N.");
+				+ (reason == null ? AdminEye.messages.getFile().getString(
+						"normal.noReasonGiven") : reason + "%N.");
 
 		for (Player kickPlayer : kickPlayers) {
 			kickPlayer.kickPlayer(StefsAPI.MessageHandler
@@ -63,7 +65,7 @@ public class KickCommand extends ExecutedCommand {
 				"playernames",
 				kickedPlayers,
 				"reason",
-				(reason == null ? "No reason given" : reason.replaceAll("&u",
-						" ")));
+				(reason == null ? AdminEye.messages.getFile().getString(
+						"normal.noReasonGiven") : reason.replaceAll("&u", " ")));
 	}
 }

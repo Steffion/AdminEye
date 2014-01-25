@@ -29,8 +29,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 
 		mainPermission = pdfFile.getName().toLowerCase() + ".";
 
-		config = StefsAPI.ConfigHandler.createConfig("config", "");
-		messages = StefsAPI.ConfigHandler.createConfig("messages", "");
+		config = StefsAPI.ConfigHandler.createConfig("config");
+		messages = StefsAPI.ConfigHandler.createConfig("messages");
 
 		StefsAPI.ConfigHandler.addDefault(config, "chat.tag",
 				"[" + pdfFile.getName() + "] ");
@@ -90,8 +90,12 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%TAG&aReloaded configs!");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.broadcast",
 				"%TAG%someone%N %message%N.");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.noReasonGiven",
+				"%ANo reason given%N.");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
 				"kicked %A%playernames%Nwith the reason: %A%reason");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.kickreason",
+				"%TAG\n%NYou've been kicked! Reason: \n%A");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
 				"set the health of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
@@ -124,6 +128,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 						"%TAG%name&c&k - %N%version is now Disabled. Made by %A%authors%N.");
 
 		StefsAPI.ConfigHandler.displayNewFiles();
+		AdminEye.checkPlayerFiles();
 
 		StefsAPI.enableAPI();
 
@@ -255,5 +260,11 @@ public class AdminEye extends JavaPlugin implements Listener {
 				.setMessage("normal.broadcast", AdminEye.messages)
 				.changeVariable("someone", someone)
 				.changeVariable("message", message).build();
+	}
+
+	public static void checkPlayerFiles() {
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			new PlayerFile(player.getName());
+		}
 	}
 }
