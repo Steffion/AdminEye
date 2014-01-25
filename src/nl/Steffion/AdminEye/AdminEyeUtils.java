@@ -10,11 +10,30 @@ public class AdminEyeUtils {
 		if (input.length - startArg <= 0) {
 			return null;
 		}
+
 		StringBuilder sb = new StringBuilder(input[startArg]);
 		for (int i = ++startArg; i < input.length; i++) {
 			sb.append(' ').append(input[i]);
 		}
+
 		return sb.toString();
+	}
+
+	public static Player requestPlayer(String namepart) {
+		Player requested = null;
+		boolean found = false;
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			if (namepart.equals("*")) {
+				requested = player;
+				found = true;
+			} else if (player.getName().toLowerCase()
+					.contains(namepart.toLowerCase())) {
+				requested = player;
+				found = true;
+			}
+		}
+
+		return (found ? requested : null);
 	}
 
 	public static ArrayList<Player> requestPlayers(String namepart) {
@@ -42,7 +61,7 @@ public class AdminEyeUtils {
 			return false;
 		}
 	}
-	
+
 	public static int getNumber(String number) {
 		try {
 			return Integer.valueOf(number);
