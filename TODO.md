@@ -12,7 +12,7 @@ We will list things which need to be added below.
 - [x] Slay.
 - [ ] Slap (fly up in the sky).
 - [ ] Votekick/voteban.
-- [ ] Goto (aka tp).
+- [x] Goto (aka tp).
 - [ ] Bring (aka summon).
 - [ ] Fly.
 - [x] HP (heal command and set health command).

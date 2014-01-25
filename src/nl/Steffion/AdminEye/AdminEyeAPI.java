@@ -1,5 +1,6 @@
 package nl.Steffion.AdminEye;
 
+import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
@@ -59,5 +60,10 @@ public class AdminEyeAPI {
 	public static void slayPlayer(Player player, String playerName,
 			String slayPlayerName) {
 		SlayCommand.slayPlayer(player, playerName, slayPlayerName);
+	}
+
+	public static void teleportplayer(Player player, String playerName,
+			String teleportPlayerName) {
+		GotoCommand.gotoPlayer(player, playerName, teleportPlayerName);
 	}
 }
