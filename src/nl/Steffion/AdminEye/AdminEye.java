@@ -83,7 +83,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
-		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.slay", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.slay", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");

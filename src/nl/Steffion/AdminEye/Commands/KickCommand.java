@@ -28,7 +28,7 @@ public class KickCommand extends ExecutedCommand {
 	}
 
 	public static void kickPlayer(Player player, String playerName,
-			String kickPlayerName, String reason2) {
+			String kickPlayerName, String reason) {
 		ArrayList<Player> kickPlayers = AdminEyeUtils
 				.requestPlayers(kickPlayerName);
 
@@ -39,16 +39,16 @@ public class KickCommand extends ExecutedCommand {
 			return;
 		}
 
-		String reason = "%TAG\n%NYou've been kicked! Reason: \n%A";
+		String finalReason = "%TAG\n%NYou've been kicked! Reason: \n%A";
 		String kickedPlayers = "";
 
-		reason = reason
-				+ (reason2 == null ? "No reason given%N." : reason2 + "%N.");
+		finalReason = finalReason
+				+ (reason == null ? "No reason given%N." : reason + "%N.");
 
 		for (Player kickPlayer : kickPlayers) {
 			kickPlayer.kickPlayer(StefsAPI.MessageHandler
 					.replaceColours(StefsAPI.MessageHandler
-							.replacePrefixes(reason)));
+							.replacePrefixes(finalReason)));
 			kickedPlayers += "%A" + kickPlayer.getName() + "%N, ";
 		}
 
@@ -63,7 +63,7 @@ public class KickCommand extends ExecutedCommand {
 				"playernames",
 				kickedPlayers,
 				"reason",
-				(reason2 == null ? "No reason given" : reason2.replaceAll("&u",
+				(reason == null ? "No reason given" : reason.replaceAll("&u",
 						" ")));
 	}
 }
