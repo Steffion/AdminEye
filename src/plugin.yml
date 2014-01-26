@@ -31,3 +31,6 @@ commands:
     description: N/A
     aliases:
         - tp
+  slap:
+    usage: /<command>
+    description: N/A

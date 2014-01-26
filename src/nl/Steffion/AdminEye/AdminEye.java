@@ -5,6 +5,7 @@ import nl.Steffion.AdminEye.StefsAPI.PermissionType;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 
 import org.bukkit.Bukkit;
@@ -84,6 +85,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "goto",
 				"Teleports the sender to a player", PermissionType.MODERATOR,
 				new GotoCommand(), "/goto <playername>");
+		StefsAPI.CommandHandler.registerCommand("slap", new String[] { "*" },
+				new String[] { "*" }, "slap", "Slaps a player into the air",
+				PermissionType.MODERATOR, new SlapCommand(),
+				"/slap <player name>");
 
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
@@ -92,6 +97,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				.addDefault(config, "broadcastEnabled.slay", true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.goto", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.slap", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
@@ -109,6 +116,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"slayed %A%playernames%Nto death");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.teleported",
 				"teleported to");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.slapped", "was slapped");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");

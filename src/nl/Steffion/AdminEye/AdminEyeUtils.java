@@ -1,7 +1,6 @@
 package nl.Steffion.AdminEye;
 
 import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

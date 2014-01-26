@@ -62,6 +62,18 @@ public class AdminEyeAPI {
 		SlayCommand.slayPlayer(player, playerName, slayPlayerName);
 	}
 
+	/**
+	 * Teleports a player
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to teleport. "*" for everyone.
+	 */
+
 	public static void teleportplayer(Player player, String playerName,
 			String teleportPlayerName) {
 		GotoCommand.gotoPlayer(player, playerName, teleportPlayerName);
