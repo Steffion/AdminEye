@@ -3,6 +3,7 @@ package nl.Steffion.AdminEye;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 
 import org.bukkit.entity.Player;
@@ -77,5 +78,10 @@ public class AdminEyeAPI {
 	public static void teleportplayer(Player player, String playerName,
 			String teleportPlayerName) {
 		GotoCommand.gotoPlayer(player, playerName, teleportPlayerName);
+	}
+
+	public static void slapPlayer(Player player, String playerName,
+			String slapPlayerName) {
+		SlapCommand.slapPlayer(player, playerName, slapPlayerName);
 	}
 }
