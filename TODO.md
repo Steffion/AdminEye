@@ -13,7 +13,7 @@ We will list things which need to be added below.
 - [x] Slap (fly up in the sky).
 - [ ] Votekick/voteban.
 - [x] Goto (aka tp).
-- [ ] Bring (aka summon).
+- [x] Bring (aka summon).
 - [ ] Fly.
 - [x] HP (heal command and set health command).
 - [ ] Feed (feed command)
