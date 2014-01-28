@@ -80,11 +80,35 @@ public class AdminEyeAPI {
 			String teleportPlayerName) {
 		GotoCommand.gotoPlayer(player, playerName, teleportPlayerName);
 	}
+	
+	/**
+	 * Slaps a player
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to slap. "*" for everyone.
+	 */
 
 	public static void slapPlayer(Player player, String playerName,
 			String slapPlayerName) {
 		SlapCommand.slapPlayer(player, playerName, slapPlayerName);
 	}
+	
+	/**
+	 * Brings a player
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to bring. "*" for everyone.
+	 */
 
 	public static void bringPlayer(Player player, String playerName,
 			String teleportPlayerName) {
