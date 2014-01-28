@@ -34,3 +34,8 @@ commands:
   slap:
     usage: /<command>
     description: N/A
+  bring:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - summon
