@@ -39,3 +39,6 @@ commands:
     description: N/A
     aliases:
         - summon
+  feed:
+    usage: /<command>
+    description: N/A

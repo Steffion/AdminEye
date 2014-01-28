@@ -1,6 +1,7 @@
 package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.Commands.BringCommand;
+import nl.Steffion.AdminEye.Commands.FeedCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
@@ -80,7 +81,7 @@ public class AdminEyeAPI {
 			String teleportPlayerName) {
 		GotoCommand.gotoPlayer(player, playerName, teleportPlayerName);
 	}
-	
+
 	/**
 	 * Slaps a player
 	 * 
@@ -97,7 +98,7 @@ public class AdminEyeAPI {
 			String slapPlayerName) {
 		SlapCommand.slapPlayer(player, playerName, slapPlayerName);
 	}
-	
+
 	/**
 	 * Brings a player
 	 * 
@@ -113,5 +114,22 @@ public class AdminEyeAPI {
 	public static void bringPlayer(Player player, String playerName,
 			String teleportPlayerName) {
 		BringCommand.bringPlayer(player, playerName, teleportPlayerName);
+	}
+	
+	/**
+	 * Feeds a player
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to feed. "*" for everyone.
+	 */
+
+	public static void feedPlayer(Player player, String playerName,
+			String feedPlayerName) {
+		FeedCommand.feedPlayer(player, playerName, feedPlayerName);
 	}
 }

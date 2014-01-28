@@ -16,7 +16,7 @@ We will list things which need to be added below.
 - [x] Bring (aka summon).
 - [ ] Fly.
 - [x] HP (heal command and set health command).
-- [ ] Feed (feed command)
+- [x] Feed (feed command)
 - [ ] Freeze (make them able to move their head though).
 - [ ] OP command (nicer interface).
 
