@@ -7,6 +7,7 @@ import nl.Steffion.AdminEye.Commands.FeedCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 
@@ -86,20 +87,23 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
 				new String[] { "*" }, "goto",
 				"Teleports the sender to a player", PermissionType.MODERATOR,
-				new GotoCommand(), "/goto <playername>");
+				new GotoCommand(), "goto <playername>");
 		StefsAPI.CommandHandler.registerCommand("slap", new String[] { "*" },
 				new String[] { "*" }, "slap", "Slaps a player into the air",
 				PermissionType.MODERATOR, new SlapCommand(),
-				"/slap <player name>");
+				"slap <player name>");
 		StefsAPI.CommandHandler.registerCommand("bring", new String[] { "*" },
 				new String[] { "*" }, "bring",
 				"Teleports a player or players to you",
 				PermissionType.MODERATOR, new BringCommand(),
-				"/bring <player name>");
+				"bring <player name>");
 		StefsAPI.CommandHandler.registerCommand("feed", new String[] { "*" },
 				new String[] { "*" }, "feed", "Fills a players hunger up",
 				PermissionType.MODERATOR, new FeedCommand(),
-				"/feed <player name>");
+				"feed <player name>");
+		StefsAPI.CommandHandler.registerCommand("op", new String[] { "*" },
+				new String[] { "*" }, "op", "This will op a player",
+				PermissionType.OP, new OpCommand(), "op <player name>");
 
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
@@ -114,6 +118,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 				true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.op", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
@@ -137,6 +142,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"has been teleported");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.fed",
 				"has been fed");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.operator",
+				"made %A%playernames%Nan operator");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");

@@ -42,3 +42,6 @@ commands:
   feed:
     usage: /<command>
     description: N/A
+  op:
+    usage: /<command>
+    description: N/A

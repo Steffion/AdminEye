@@ -5,6 +5,7 @@ import nl.Steffion.AdminEye.Commands.FeedCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 
@@ -115,7 +116,7 @@ public class AdminEyeAPI {
 			String teleportPlayerName) {
 		BringCommand.bringPlayer(player, playerName, teleportPlayerName);
 	}
-	
+
 	/**
 	 * Feeds a player
 	 * 
@@ -131,5 +132,22 @@ public class AdminEyeAPI {
 	public static void feedPlayer(Player player, String playerName,
 			String feedPlayerName) {
 		FeedCommand.feedPlayer(player, playerName, feedPlayerName);
+	}
+	
+	/**
+	 * Op's a player
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to op. "*" for everyone.
+	 */
+
+	public static void opPlayer(Player player, String playerName,
+			String opPlayerName) {
+		OpCommand.opPlayer(player, playerName, opPlayerName);
 	}
 }

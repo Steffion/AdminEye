@@ -18,7 +18,9 @@ We will list things which need to be added below.
 - [x] HP (heal command and set health command).
 - [x] Feed (feed command)
 - [ ] Freeze (make them able to move their head though).
-- [ ] OP command (nicer interface).
+- [x] OP command (nicer interface).
+- [ ] Deop command
+- [ ] Invisibility Command
 
 More will be added.
 
