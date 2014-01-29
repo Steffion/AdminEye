@@ -43,7 +43,7 @@ public class BringCommand extends ExecutedCommand {
 			teleportedPlayers += "%A" + teleportPlayer.getName() + "%N, ";
 		}
 
-		teleportedPlayers = (teleportPlayerName.equals("") ? teleportedPlayers = AdminEye.config
+		teleportedPlayers = (teleportPlayerName.equals("*") ? teleportedPlayers = AdminEye.config
 				.getFile().getString("chat.everyone") + "%N, "
 				: teleportedPlayers);
 
