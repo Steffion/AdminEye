@@ -3,6 +3,7 @@ package nl.Steffion.AdminEye;
 import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
 import nl.Steffion.AdminEye.Commands.BringCommand;
+import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.FeedCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
@@ -104,6 +105,9 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.CommandHandler.registerCommand("op", new String[] { "*" },
 				new String[] { "*" }, "op", "This will op a player",
 				PermissionType.OP, new OpCommand(), "op <player name>");
+		StefsAPI.CommandHandler.registerCommand("deop", new String[] { "*" },
+				new String[] { "*" }, "deop", "This will deop a player",
+				PermissionType.OP, new DeopCommand(), "deop <player name>");
 
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
@@ -119,6 +123,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.op", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.deop", true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
@@ -144,6 +150,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"has been fed");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.operator",
 				"made %A%playernames%Nan operator");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.deop",
+				"has de-opped");
 
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");

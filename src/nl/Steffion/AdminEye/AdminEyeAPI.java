@@ -1,6 +1,7 @@
 package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.Commands.BringCommand;
+import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.FeedCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
@@ -133,7 +134,7 @@ public class AdminEyeAPI {
 			String feedPlayerName) {
 		FeedCommand.feedPlayer(player, playerName, feedPlayerName);
 	}
-	
+
 	/**
 	 * Op's a player
 	 * 
@@ -149,5 +150,22 @@ public class AdminEyeAPI {
 	public static void opPlayer(Player player, String playerName,
 			String opPlayerName) {
 		OpCommand.opPlayer(player, playerName, opPlayerName);
+	}
+
+	/**
+	 * De-op's a player
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to de-op. "*" for everyone.
+	 */
+
+	public static void deopPlayer(Player player, String playerName,
+			String deopPlayerName) {
+		DeopCommand.deopPlayer(player, playerName, deopPlayerName);
 	}
 }

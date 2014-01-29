@@ -45,3 +45,6 @@ commands:
   op:
     usage: /<command>
     description: N/A
+  deop:
+    usage: /<command>
+    description: N/A
