@@ -2,14 +2,11 @@ package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
-<<<<<<< HEAD
 import nl.Steffion.AdminEye.Commands.BanCommand;
-=======
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.FeedCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
->>>>>>> origin/HEAD
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
 import nl.Steffion.AdminEye.Commands.OpCommand;
@@ -64,6 +61,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "chat.everyone", "&3Everyone");
 
+		// AdminEye default commands.
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(), null, null,
 				"info", "Displays the plugin's info.", PermissionType.ALL,
 				new BasicCommands().new InfoCommand(), null);
@@ -82,10 +80,28 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"Reloads all configs.", PermissionType.MODERATOR,
 				new BasicCommands().new ReloadCommand(), pdfFile.getName()
 						+ " <reload/r>");
+
+		// AdminEye commands.
 		StefsAPI.CommandHandler.registerCommand("ban", new String[] { "*" },
 				new String[] { "*" }, "ban", "Bans a player.",
 				PermissionType.MODERATOR, new BanCommand(),
 				"ban <player name> <time> [reason]");
+		StefsAPI.CommandHandler.registerCommand("bring", new String[] { "*" },
+				new String[] { "*" }, "bring",
+				"Teleports a player or players to you.",
+				PermissionType.MODERATOR, new BringCommand(),
+				"bring <player name>");
+		StefsAPI.CommandHandler.registerCommand("deop", new String[] { "*" },
+				new String[] { "*" }, "deop", "DeOPs a player.",
+				PermissionType.OP, new DeopCommand(), "deop <player name>");
+		StefsAPI.CommandHandler.registerCommand("feed", new String[] { "*" },
+				new String[] { "*" }, "feed", "Fills a players hunger up.",
+				PermissionType.MODERATOR, new FeedCommand(),
+				"feed <player name>");
+		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
+				new String[] { "*" }, "goto",
+				"Teleports the sender to a player.", PermissionType.MODERATOR,
+				new GotoCommand(), "goto <player name>");
 		StefsAPI.CommandHandler.registerCommand("hp", new String[] { "*" },
 				new String[] { "*" }, "hp", "Sets a players health.",
 				PermissionType.MODERATOR, new HPCommand(),
@@ -94,64 +110,44 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "kick", "Kicks a player.",
 				PermissionType.MODERATOR, new KickCommand(),
 				"kick <player name> [reason]");
+		StefsAPI.CommandHandler.registerCommand("op", new String[] { "*" },
+				new String[] { "*" }, "op", "OPs a player.", PermissionType.OP,
+				new OpCommand(), "op <player name>");
+		StefsAPI.CommandHandler.registerCommand("slap", new String[] { "*" },
+				new String[] { "*" }, "slap", "Slaps a player into the air.",
+				PermissionType.MODERATOR, new SlapCommand(),
+				"slap <player name>");
 		StefsAPI.CommandHandler.registerCommand("slay", new String[] { "*" },
 				new String[] { "*" }, "slay", "Kills a player.",
 				PermissionType.MODERATOR, new SlayCommand(),
 				"slay <player name>");
-<<<<<<< HEAD
 		StefsAPI.CommandHandler.registerCommand("unban", new String[] { "*" },
 				new String[] { "*" }, "unban", "Unbans a player.",
 				PermissionType.MODERATOR, new UnbanCommand(),
 				"unban <player name>");
-=======
-		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
-				new String[] { "*" }, "goto",
-				"Teleports the sender to a player", PermissionType.MODERATOR,
-				new GotoCommand(), "goto <playername>");
-		StefsAPI.CommandHandler.registerCommand("slap", new String[] { "*" },
-				new String[] { "*" }, "slap", "Slaps a player into the air",
-				PermissionType.MODERATOR, new SlapCommand(),
-				"slap <player name>");
-		StefsAPI.CommandHandler.registerCommand("bring", new String[] { "*" },
-				new String[] { "*" }, "bring",
-				"Teleports a player or players to you",
-				PermissionType.MODERATOR, new BringCommand(),
-				"bring <player name>");
-		StefsAPI.CommandHandler.registerCommand("feed", new String[] { "*" },
-				new String[] { "*" }, "feed", "Fills a players hunger up",
-				PermissionType.MODERATOR, new FeedCommand(),
-				"feed <player name>");
-		StefsAPI.CommandHandler.registerCommand("op", new String[] { "*" },
-				new String[] { "*" }, "op", "This will op a player",
-				PermissionType.OP, new OpCommand(), "op <player name>");
-		StefsAPI.CommandHandler.registerCommand("deop", new String[] { "*" },
-				new String[] { "*" }, "deop", "This will deop a player",
-				PermissionType.OP, new DeopCommand(), "deop <player name>");
->>>>>>> origin/HEAD
 
+		// AdminEye's broadcast enabled.
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.ban", true);
-		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
-		StefsAPI.ConfigHandler
-				.addDefault(config, "broadcastEnabled.kick", true);
-		StefsAPI.ConfigHandler
-				.addDefault(config, "broadcastEnabled.slay", true);
-<<<<<<< HEAD
-		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unban",
-				true);
-=======
-		StefsAPI.ConfigHandler
-				.addDefault(config, "broadcastEnabled.goto", true);
-		StefsAPI.ConfigHandler
-				.addDefault(config, "broadcastEnabled.slap", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.bring",
 				true);
 		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.deop", true);
+		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.goto", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.kick", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.op", true);
 		StefsAPI.ConfigHandler
-				.addDefault(config, "broadcastEnabled.deop", true);
->>>>>>> origin/HEAD
+				.addDefault(config, "broadcastEnabled.slap", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.slay", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unban",
+				true);
 
+		// Normal qualified messages.
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.broadcast",
@@ -197,6 +193,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.deop",
 				"has de-opped");
 
+		// Error qualified messages.
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
 				"%TAG%EYou don't have the permissions to do that!");
 		StefsAPI.ConfigHandler
@@ -216,6 +213,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "error.notANumber",
 				"%TAG%E'%A%number%E' is not a number!");
 
+		// Logging.
 		StefsAPI.ConfigHandler
 				.addDefault(messages, "log.enabledPlugin",
 						"%TAG%name&a&k + %N%version is now Enabled. Made by %A%authors%N.");

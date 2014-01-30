@@ -15,6 +15,27 @@ commands:
     description: N/A
     aliases:
         - kickban
+  bring:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - summon
+        - s
+        - tphere
+  deop:
+    usage: /<command>
+    description: N/A
+  feed:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - hunger
+  goto:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - tp
+        - teleport
   hp:
     usage: /<command>
     description: N/A
@@ -26,38 +47,20 @@ commands:
     description: N/A
     aliases:
         - k
+        - disconnect
+  op:
+    usage: /<command>
+    description: N/A
+  slap:
+    usage: /<command>
+    description: N/A
   slay:
     usage: /<command>
     description: N/A
     aliases:
         - kill
-<<<<<<< HEAD
   unban:
     usage: /<command>
     description: N/A
     aliases:
         - uban
-=======
-  goto:
-    usage: /<command>
-    description: N/A
-    aliases:
-        - tp
-  slap:
-    usage: /<command>
-    description: N/A
-  bring:
-    usage: /<command>
-    description: N/A
-    aliases:
-        - summon
-  feed:
-    usage: /<command>
-    description: N/A
-  op:
-    usage: /<command>
-    description: N/A
-  deop:
-    usage: /<command>
-    description: N/A
->>>>>>> origin/HEAD
