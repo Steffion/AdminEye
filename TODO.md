@@ -10,14 +10,17 @@ We will list things which need to be added below.
 - [ ] Ban (including temp ban and message on join).
 - [ ] Mute.
 - [x] Slay.
-- [ ] Slap (fly up in the sky).
+- [x] Slap (fly up in the sky).
 - [ ] Votekick/voteban.
-- [ ] Goto (aka tp).
-- [ ] Bring (aka summon).
+- [x] Goto (aka tp).
+- [x] Bring (aka summon).
 - [ ] Fly.
 - [x] HP (heal command and set health command).
+- [x] Feed (feed command)
 - [ ] Freeze (make them able to move their head though).
-- [ ] OP command (nicer interface).
+- [x] OP command (nicer interface).
+- [x] Deop command
+- [ ] Invisibility Command
 
 More will be added.
 

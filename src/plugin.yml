@@ -31,8 +31,33 @@ commands:
     description: N/A
     aliases:
         - kill
+<<<<<<< HEAD
   unban:
     usage: /<command>
     description: N/A
     aliases:
         - uban
+=======
+  goto:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - tp
+  slap:
+    usage: /<command>
+    description: N/A
+  bring:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - summon
+  feed:
+    usage: /<command>
+    description: N/A
+  op:
+    usage: /<command>
+    description: N/A
+  deop:
+    usage: /<command>
+    description: N/A
+>>>>>>> origin/HEAD
