@@ -10,19 +10,29 @@ commands:
     description: N/A
     aliases:
         - ae
-  kick:
+  ban:
     usage: /<command>
     description: N/A
     aliases:
-        - k
+        - kickban
   hp:
     usage: /<command>
     description: N/A
     aliases:
         - heal
         - h
+  kick:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - k
   slay:
     usage: /<command>
     description: N/A
     aliases:
         - kill
+  unban:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - uban

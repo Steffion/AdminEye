@@ -2,9 +2,12 @@ package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.StefsAPI.Config;
 import nl.Steffion.AdminEye.StefsAPI.PermissionType;
+import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
+import nl.Steffion.AdminEye.Commands.UnbanCommand;
+import nl.Steffion.AdminEye.Listeners.OnPlayerLoginEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -31,6 +34,9 @@ public class AdminEye extends JavaPlugin implements Listener {
 
 		config = StefsAPI.ConfigHandler.createConfig("config");
 		messages = StefsAPI.ConfigHandler.createConfig("messages");
+
+		getServer().getPluginManager().registerEvents(new OnPlayerLoginEvent(),
+				this);
 
 		StefsAPI.ConfigHandler.addDefault(config, "chat.tag",
 				"[" + pdfFile.getName() + "] ");
@@ -67,24 +73,35 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"Reloads all configs.", PermissionType.MODERATOR,
 				new BasicCommands().new ReloadCommand(), pdfFile.getName()
 						+ " <reload/r>");
-		StefsAPI.CommandHandler.registerCommand("kick", new String[] { "*" },
-				new String[] { "*" }, "kick", "Kicks a player.",
-				PermissionType.MODERATOR, new KickCommand(),
-				"kick <player name> [reason]");
+		StefsAPI.CommandHandler.registerCommand("ban", new String[] { "*" },
+				new String[] { "*" }, "ban", "Bans a player.",
+				PermissionType.MODERATOR, new BanCommand(),
+				"ban <player name> <time> [reason]");
 		StefsAPI.CommandHandler.registerCommand("hp", new String[] { "*" },
 				new String[] { "*" }, "hp", "Sets a players health.",
 				PermissionType.MODERATOR, new HPCommand(),
 				"hp <player name> [amount of hp]");
+		StefsAPI.CommandHandler.registerCommand("kick", new String[] { "*" },
+				new String[] { "*" }, "kick", "Kicks a player.",
+				PermissionType.MODERATOR, new KickCommand(),
+				"kick <player name> [reason]");
 		StefsAPI.CommandHandler.registerCommand("slay", new String[] { "*" },
 				new String[] { "*" }, "slay", "Kills a player.",
 				PermissionType.MODERATOR, new SlayCommand(),
 				"slay <player name>");
+		StefsAPI.CommandHandler.registerCommand("unban", new String[] { "*" },
+				new String[] { "*" }, "unban", "Unbans a player.",
+				PermissionType.MODERATOR, new UnbanCommand(),
+				"unban <player name>");
 
-		StefsAPI.ConfigHandler
-				.addDefault(config, "broadcastEnabled.kick", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.ban", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
 		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.kick", true);
+		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.slay", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unban",
+				true);
 
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
 				"%TAG&aReloaded configs!");
@@ -96,6 +113,24 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"kicked %A%playernames%Nwith the reason: %A%reason");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kickreason",
 				"%TAG\n%NYou've been kicked! Reason: \n%A");
+		StefsAPI.ConfigHandler
+				.addDefault(messages, "normal.banned",
+						"banned %A%playernames%Nwith the reason: %A%reason% Ban length:%A%time");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.unbanned",
+				"made %A%playernames%Nunbanned");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.banreason",
+				"%TAG\n%NYou've been banned! Reason: \n%A");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.banLength",
+				"%NBan length:");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.days", " %Nday(s)");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.hours",
+				" %Nhour(s)");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.minutes",
+				" %Nminute(s)");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.seconds",
+				" %Nsecond(s)");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.permanently",
+				" %E&lPermanently");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
 				"set the health of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
