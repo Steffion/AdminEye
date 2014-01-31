@@ -156,7 +156,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%ANo reason given%N.");
 		StefsAPI.ConfigHandler
 				.addDefault(messages, "normal.banned",
-						"banned %A%playernames%Nwith the reason: %A%reason% Ban length:%A%time");
+						"banned %A%playernames%Nwith the reason: %A%reason Ban length:%A%time");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.banreason",
 				"%TAG\n%NYou've been banned! Reason: \n%A");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.banLength",

@@ -27,7 +27,7 @@ public class PlayerFile {
 		playerFile.getFile().set("playerName", playerName);
 		playerFile.getFile().set("ban.banned", banBanned);
 		playerFile.getFile().set("ban.reason", banReason);
-		playerFile.getFile().set("ban.lenght", banLength);
+		playerFile.getFile().set("ban.length", banLength);
 		this.playerFile.save();
 	}
 }
