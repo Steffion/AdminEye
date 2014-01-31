@@ -3,6 +3,7 @@ main: nl.Steffion.AdminEye.AdminEye
 version: 0.1.0_ALPHA
 authors:
   - Steffion
+  - RandomPanda30
 load: POSTWORLD
 commands:
   AdminEye:

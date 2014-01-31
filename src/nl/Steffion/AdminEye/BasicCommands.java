@@ -29,8 +29,10 @@ public class BasicCommands {
 					.build()
 					.setMessage("%A%name%N made by %A%authors%N.")
 					.changeVariable("name", AdminEye.pdfFile.getName())
-					.changeVariable("authors",
-							AdminEye.pdfFile.getAuthors().get(0))
+					.changeVariable(
+							"authors",
+							AdminEye.pdfFile.getAuthors().get(0) + " %Nand %A"
+									+ AdminEye.pdfFile.getAuthors().get(1))
 					.build()
 					.setMessage("%NVersion: %A%version%N.")
 					.changeVariable("version", AdminEye.pdfFile.getVersion())

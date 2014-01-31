@@ -226,20 +226,30 @@ public class AdminEye extends JavaPlugin implements Listener {
 
 		StefsAPI.enableAPI();
 
-		StefsAPI.MessageHandler.buildMessage().addSender("$")
+		StefsAPI.MessageHandler
+				.buildMessage()
+				.addSender("$")
 				.setMessage("log.enabledPlugin", messages)
 				.changeVariable("name", pdfFile.getName())
 				.changeVariable("version", "v" + pdfFile.getVersion())
-				.changeVariable("authors", pdfFile.getAuthors().get(0)).build();
+				.changeVariable(
+						"authors",
+						pdfFile.getAuthors().get(0) + " %Nand %A"
+								+ pdfFile.getAuthors().get(1)).build();
 
 	}
 
 	public void onDisable() {
-		StefsAPI.MessageHandler.buildMessage().addSender("$")
+		StefsAPI.MessageHandler
+				.buildMessage()
+				.addSender("$")
 				.setMessage("log.disabledPlugin", messages)
 				.changeVariable("name", pdfFile.getName())
 				.changeVariable("version", "v" + pdfFile.getVersion())
-				.changeVariable("authors", pdfFile.getAuthors().get(0)).build();
+				.changeVariable(
+						"authors",
+						pdfFile.getAuthors().get(0) + " %Nand %A"
+								+ pdfFile.getAuthors().get(1)).build();
 	}
 
 	@Override
