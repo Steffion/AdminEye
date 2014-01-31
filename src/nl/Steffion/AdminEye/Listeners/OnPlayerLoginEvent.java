@@ -20,15 +20,15 @@ public class OnPlayerLoginEvent implements Listener {
 		PlayerFile playerFile = new PlayerFile(player.getName());
 
 		if (playerFile.banBanned) {
-			String finalTime = (playerFile.banLenght.equals(0) ? AdminEye.messages
+			String finalTime = (playerFile.banLength.equals(0) ? AdminEye.messages
 					.getFile().getString("normal.permanently") : "");
 			String finalReason = AdminEye.messages.getFile().getString(
 					"normal.banreason")
 					+ playerFile.banReason;
-			if (playerFile.banLenght != 0) {
+			if (playerFile.banLength != 0) {
 				int time = (int) Calendar.getInstance().getTimeInMillis();
 
-				if (time >= playerFile.banLenght) {
+				if (time >= playerFile.banLength) {
 					playerFile.banBanned = false;
 					playerFile.save();
 					return;
@@ -39,12 +39,12 @@ public class OnPlayerLoginEvent implements Listener {
 				int minutes = 0;
 				int seconds = 0;
 
-				days = (playerFile.banLenght - time) / 1000 / 60 / 60 / 24;
-				hours = ((playerFile.banLenght - time) / 1000 / 60 / 60)
+				days = (playerFile.banLength - time) / 1000 / 60 / 60 / 24;
+				hours = ((playerFile.banLength - time) / 1000 / 60 / 60)
 						- (days * 24);
-				minutes = ((playerFile.banLenght - time) / 1000 / 60)
+				minutes = ((playerFile.banLength - time) / 1000 / 60)
 						- (hours * 60) - (days * 24 * 60);
-				seconds = ((playerFile.banLenght - time) / 1000)
+				seconds = ((playerFile.banLength - time) / 1000)
 						- (minutes * 60) - (hours * 60 * 60)
 						- (days * 24 * 60 * 60);
 
@@ -76,7 +76,7 @@ public class OnPlayerLoginEvent implements Listener {
 
 			finalReason += "&u"
 					+ AdminEye.messages.getFile().getString("normal.banLength")
-					+ (playerFile.banLenght.equals(0) ? AdminEye.messages
+					+ (playerFile.banLength.equals(0) ? AdminEye.messages
 							.getFile().getString("normal.permanently") + "%N."
 							: "%A" + finalTime + "%N.");
 
