@@ -131,7 +131,7 @@ public class BanCommand extends ExecutedCommand {
 			bannedPlayers += "%A" + banPlayer.getName() + "%N, ";
 			PlayerFile playerFile = new PlayerFile(banPlayer.getName());
 			playerFile.banBanned = true;
-			playerFile.banLenght = lenght;
+			playerFile.banLength = lenght;
 			playerFile.banReason = (reason == null ? AdminEye.messages
 					.getFile().getString("normal.noReasonGiven") : reason
 					+ "%N.");
