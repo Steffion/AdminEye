@@ -16,7 +16,7 @@ We will list things which need to be added below.
 - [x] Bring (aka summon).
 - [ ] Fly.
 - [x] HP (heal command and set health command).
-- [x] Feed (feed command)
+- [ ] Hunger (hunger command) (redo)
 - [ ] Freeze (make them able to move their head though).
 - [x] OP command (nicer interface).
 - [x] Deop command.
@@ -30,3 +30,4 @@ More will be added.
 ---
 - [ ] MySQL support.
 - [ ] Log all commands in file or MySQL table (when enabled).
+- [ ] Make a cool dashboard site for AdminEye users?
