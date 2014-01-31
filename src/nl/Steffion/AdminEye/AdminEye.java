@@ -181,17 +181,17 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
 				"slayed %A%playernames%Nto death");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.teleported",
-				"teleported to");
+				"went to %A%playernames%N");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.slapped",
-				"was slapped");
+				"slapped %A%playernames%Nin their face");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.bring",
-				"has been teleported");
+				"has brought %A%playernames%Nto them");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.fed",
 				"has been fed");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.operator",
 				"made %A%playernames%Nan operator");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.deop",
-				"has de-opped");
+				"made %A%playernames%Nde-opped");
 
 		// Error qualified messages.
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
