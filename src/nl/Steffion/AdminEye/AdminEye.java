@@ -154,15 +154,9 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%TAG%someone%N %message%N.");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.noReasonGiven",
 				"%ANo reason given%N.");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
-				"kicked %A%playernames%Nwith the reason: %A%reason");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.kickreason",
-				"%TAG\n%NYou've been kicked! Reason: \n%A");
 		StefsAPI.ConfigHandler
 				.addDefault(messages, "normal.banned",
 						"banned %A%playernames%Nwith the reason: %A%reason% Ban length:%A%time");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.unbanned",
-				"made %A%playernames%Nunbanned");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.banreason",
 				"%TAG\n%NYou've been banned! Reason: \n%A");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.banLength",
@@ -176,22 +170,28 @@ public class AdminEye extends JavaPlugin implements Listener {
 				" %Nsecond(s)");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.permanently",
 				" %E&lPermanently");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
-				"set the health of %A%playernames%Nto %A%amount");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
-				"slayed %A%playernames%Nto death");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.teleported",
-				"went to %A%playernames%N");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.slapped",
-				"slapped %A%playernames%Nin their face");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.bring",
 				"has brought %A%playernames%Nto them");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.fed",
-				"has been fed");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.operator",
-				"made %A%playernames%Nan operator");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.deop",
 				"made %A%playernames%Nde-opped");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.fed",
+				"has been fed");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.went",
+				"went to %A%playernames");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
+				"set the health of %A%playernames%Nto %A%amount");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
+				"kicked %A%playernames%Nwith the reason: %A%reason");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.kickreason",
+				"%TAG\n%NYou've been kicked! Reason: \n%A");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.op",
+				"made %A%playernames%Nan operator");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.slapped",
+				"slapped %A%playernames%Nin their face");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
+				"slayed %A%playernames%Nto death");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.unbanned",
+				"made %A%playernames%Nunbanned");
 
 		// Error qualified messages.
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
