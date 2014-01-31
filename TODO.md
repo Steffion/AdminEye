@@ -21,6 +21,8 @@ We will list things which need to be added below.
 - [x] OP command (nicer interface).
 - [x] Deop command.
 - [ ] Invisibility Command.
+- [ ] Set time command.
+- [ ] Weather command.
 
 More will be added.
 
