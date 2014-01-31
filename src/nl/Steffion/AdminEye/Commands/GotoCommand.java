@@ -23,28 +23,30 @@ public class GotoCommand extends ExecutedCommand {
 	}
 
 	public static void gotoPlayer(Player player, String playerName,
-			String teleportPlayerName) {
-		Player teleportPlayers = AdminEyeUtils
-				.requestPlayer(teleportPlayerName);
+			String gotoPlayerName) {
 
-		if (teleportPlayers == null && teleportPlayerName != null) {
-			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
-					.setMessage("error.playerNotFound", AdminEye.messages)
-					.changeVariable("playername", teleportPlayerName).build();
+		if (player == null) {
+			StefsAPI.MessageHandler.buildMessage().addSender("$")
+					.setMessage("error.onlyIngame", AdminEye.messages).build();
 			return;
 		}
 
-		player.teleport(teleportPlayers);
+		Player gotoPlayer = AdminEyeUtils.requestPlayer(gotoPlayerName);
+
+		if (gotoPlayer == null && gotoPlayerName != null) {
+			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
+					.setMessage("error.playerNotFound", AdminEye.messages)
+					.changeVariable("playername", gotoPlayerName).build();
+			return;
+		}
+
+		player.teleport(gotoPlayer);
 
 		String desPlayers = "";
 
-		desPlayers += "%A" + teleportPlayers.getName();
+		desPlayers += "%A" + gotoPlayer.getName();
 
-		desPlayers = (teleportPlayerName.equals("*") ? desPlayers = AdminEye.config
-				.getFile().getString("chat.everyone") + "%N, "
-				: desPlayers);
-
-		AdminEye.broadcastAdminEyeMessage(playerName, "teleported", "goto",
+		AdminEye.broadcastAdminEyeMessage(playerName, "went", "goto",
 				"playernames", desPlayers);
 	}
 }

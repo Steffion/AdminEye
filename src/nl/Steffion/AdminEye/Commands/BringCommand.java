@@ -26,6 +26,13 @@ public class BringCommand extends ExecutedCommand {
 
 	public static void bringPlayer(Player player, String playerName,
 			String teleportPlayerName) {
+
+		if (player == null) {
+			StefsAPI.MessageHandler.buildMessage().addSender("$")
+					.setMessage("error.onlyIngame", AdminEye.messages).build();
+			return;
+		}
+
 		ArrayList<Player> teleportPlayers = AdminEyeUtils
 				.requestPlayers(teleportPlayerName);
 

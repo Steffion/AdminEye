@@ -47,7 +47,7 @@ public class OpCommand extends ExecutedCommand {
 				.getFile().getString("chat.everyone") + "%N, "
 				: oppedPlayers);
 
-		AdminEye.broadcastAdminEyeMessage(playerName, "operator", "op",
+		AdminEye.broadcastAdminEyeMessage(playerName, "op", "op",
 				"playernames", oppedPlayers);
 	}
 
