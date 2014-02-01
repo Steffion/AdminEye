@@ -95,7 +95,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "deop", "DeOPs a player.",
 				PermissionType.OP, new DeopCommand(), "deop <player name>");
 		StefsAPI.CommandHandler.registerCommand("hunger", new String[] { "*" },
-				new String[] { "*" }, "hunger", "Sets a players hunger",
+				new String[] { "*" }, "hunger", "Sets a players hunger.",
 				PermissionType.MODERATOR, new HungerCommand(),
 				"hunger <player name> <amount>");
 		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
