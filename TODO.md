@@ -16,7 +16,7 @@ We will list things which need to be added below.
 - [x] Bring (aka summon).
 - [ ] Fly.
 - [x] HP (heal command and set health command).
-- [ ] Hunger (hunger command) (redo)
+- [x] Hunger (hunger command) (redo)
 - [ ] Freeze (make them able to move their head though).
 - [x] OP command (nicer interface).
 - [x] Deop command.
