@@ -19,22 +19,22 @@ public class HungerCommand extends ExecutedCommand {
 					.setMessage("error.notEnoughArguments", AdminEye.messages)
 					.changeVariable("syntax", "/hunger <player name> <amount>").build();
 		} else if (args.length <= 1) {
-			feedPlayer(player, playerName, args[0], "20");
+			setHunger(player, playerName, args[0], "20");
 		} else {
-			feedPlayer(player, playerName, args[0], args[1]);
+			setHunger(player, playerName, args[0], args[1]);
 		}
 		return true;
 	}
 
-	public static void feedPlayer(Player player, String playerName,
-			String feedPlayerName, String amount) {
-		ArrayList<Player> feedPlayers = AdminEyeUtils
-				.requestPlayers(feedPlayerName);
+	public static void setHunger(Player player, String playerName,
+			String hungerPlayerName, String amount) {
+		ArrayList<Player> hungerPlayers = AdminEyeUtils
+				.requestPlayers(hungerPlayerName);
 
-		if (feedPlayers == null && feedPlayerName != null) {
+		if (hungerPlayers == null && hungerPlayerName != null) {
 			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
 					.setMessage("error.playerNotFound", AdminEye.messages)
-					.changeVariable("playername", feedPlayerName).build();
+					.changeVariable("playername", hungerPlayerName).build();
 			return;
 		}
 
@@ -54,12 +54,12 @@ public class HungerCommand extends ExecutedCommand {
 		
 		String fedPlayers = "";
 
-		for (Player feedPlayer : feedPlayers) {
-			feedPlayer.setFoodLevel(food);
-			fedPlayers += "%A" + feedPlayer.getName() + "%N, ";
+		for (Player hungerPlayer : hungerPlayers) {
+			hungerPlayer.setFoodLevel(food);
+			fedPlayers += "%A" + hungerPlayer.getName() + "%N, ";
 		}
 
-		fedPlayers = (feedPlayerName.equals("*") ? fedPlayers = AdminEye.config
+		fedPlayers = (hungerPlayerName.equals("*") ? fedPlayers = AdminEye.config
 				.getFile().getString("chat.everyone") + "%N, " : fedPlayers);
 
 		AdminEye.broadcastAdminEyeMessage(playerName, "fed", "feed",

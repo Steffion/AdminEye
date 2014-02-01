@@ -1,11 +1,9 @@
 package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.Commands.BanCommand;
-import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
-import nl.Steffion.AdminEye.Commands.HungerCommand;
-import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
+import nl.Steffion.AdminEye.Commands.HungerCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
 import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
@@ -85,7 +83,7 @@ public class AdminEyeAPI {
 	 */
 	public static void setHunger(Player player, String playerName,
 			String hungerPlayerName, String amount) {
-		HungerCommand.feedPlayer(player, playerName, hungerPlayerName, amount);
+		HungerCommand.setHunger(player, playerName, hungerPlayerName, amount);
 	}
 
 	/**
