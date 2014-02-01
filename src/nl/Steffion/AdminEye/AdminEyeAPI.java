@@ -1,5 +1,6 @@
 package nl.Steffion.AdminEye;
 
+import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.HungerCommand;
@@ -9,10 +10,47 @@ import nl.Steffion.AdminEye.Commands.KickCommand;
 import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
+import nl.Steffion.AdminEye.Commands.UnbanCommand;
 
 import org.bukkit.entity.Player;
 
 public class AdminEyeAPI {
+	/**
+	 * Bans a player.
+	 * 
+	 * @param player
+	 *            Player who issued. null for unknown.
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param banPlayerName
+	 *            Player's name you want to ban. "*" for everyone.
+	 * @param time
+	 *            Length of ban. Example: "2d1h30m20s" or "0" for a permanently
+	 *            ban.
+	 * @param reason
+	 *            Reason for ban. null for no reason.
+	 */
+	public static void banPlayer(Player player, String playerName,
+			String banPlayerName, String time, String reason) {
+		BanCommand.banPlayer(player, playerName, banPlayerName, time, reason);
+	}
+
+	/**
+	 * DeOP's a player.
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to deOP. "*" for everyone.
+	 */
+	public static void deopPlayer(Player player, String playerName,
+			String deopPlayerName) {
+		DeopCommand.deopPlayer(player, playerName, deopPlayerName);
+	}
 
 	/**
 	 * Sets a player's health.
@@ -30,6 +68,24 @@ public class AdminEyeAPI {
 	public static void setHealth(Player player, String playerName,
 			String healPlayerName, String amount) {
 		HPCommand.setHealth(player, playerName, healPlayerName, amount);
+	}
+
+	/**
+	 * Sets a player's hunger.
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to set the hunger of. "*" for everyone.
+	 * @param amount
+	 *            Amount of hunger. 0-20. Note: 0 is starving.
+	 */
+	public static void setHunger(Player player, String playerName,
+			String hungerPlayerName, String amount) {
+		HungerCommand.feedPlayer(player, playerName, hungerPlayerName, amount);
 	}
 
 	/**
@@ -52,6 +108,38 @@ public class AdminEyeAPI {
 	}
 
 	/**
+	 * Op's a player.
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to op. "*" for everyone.
+	 */
+	public static void opPlayer(Player player, String playerName,
+			String opPlayerName) {
+		OpCommand.opPlayer(player, playerName, opPlayerName);
+	}
+
+	/**
+	 * Slaps a player.
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param teleportPlayerName
+	 *            Player's name you want to slap. "*" for everyone.
+	 */
+	public static void slapPlayer(Player player, String playerName,
+			String slapPlayerName) {
+		SlapCommand.slapPlayer(player, playerName, slapPlayerName);
+	}
+
+	/**
 	 * Slays (kills) a player.
 	 * 
 	 * @param player
@@ -68,104 +156,18 @@ public class AdminEyeAPI {
 	}
 
 	/**
-	 * Teleports a player
+	 * Unbans a player.
 	 * 
 	 * @param player
-	 *            Player who issues. null if unknown
+	 *            Player who issued. null for unknown.
 	 * @param playerName
 	 *            Player's name who issued. "$" for console, "#" for 'system',
 	 *            or just the player's name.
-	 * @param teleportPlayerName
-	 *            Player's name you want to teleport. "*" for everyone.
+	 * @param unbanPlayerName
+	 *            Player's name you want to unban. "*" for everyone.
 	 */
-
-	public static void teleportplayer(Player player, String playerName,
-			String teleportPlayerName) {
-		GotoCommand.gotoPlayer(player, playerName, teleportPlayerName);
-	}
-
-	/**
-	 * Slaps a player
-	 * 
-	 * @param player
-	 *            Player who issues. null if unknown
-	 * @param playerName
-	 *            Player's name who issued. "$" for console, "#" for 'system',
-	 *            or just the player's name.
-	 * @param teleportPlayerName
-	 *            Player's name you want to slap. "*" for everyone.
-	 */
-
-	public static void slapPlayer(Player player, String playerName,
-			String slapPlayerName) {
-		SlapCommand.slapPlayer(player, playerName, slapPlayerName);
-	}
-
-	/**
-	 * Brings a player
-	 * 
-	 * @param player
-	 *            Player who issues. null if unknown
-	 * @param playerName
-	 *            Player's name who issued. "$" for console, "#" for 'system',
-	 *            or just the player's name.
-	 * @param teleportPlayerName
-	 *            Player's name you want to bring. "*" for everyone.
-	 */
-
-	public static void bringPlayer(Player player, String playerName,
-			String teleportPlayerName) {
-		BringCommand.bringPlayer(player, playerName, teleportPlayerName);
-	}
-
-	/**
-	 * Feeds a player
-	 * 
-	 * @param player
-	 *            Player who issues. null if unknown
-	 * @param playerName
-	 *            Player's name who issued. "$" for console, "#" for 'system',
-	 *            or just the player's name.
-	 * @param teleportPlayerName
-	 *            Player's name you want to feed. "*" for everyone.
-	 */
-
-	public static void feedPlayer(Player player, String playerName,
-			String feedPlayerName, String amount) {
-		HungerCommand.feedPlayer(player, playerName, feedPlayerName, amount);
-	}
-
-	/**
-	 * Op's a player
-	 * 
-	 * @param player
-	 *            Player who issues. null if unknown
-	 * @param playerName
-	 *            Player's name who issued. "$" for console, "#" for 'system',
-	 *            or just the player's name.
-	 * @param teleportPlayerName
-	 *            Player's name you want to op. "*" for everyone.
-	 */
-
-	public static void opPlayer(Player player, String playerName,
-			String opPlayerName) {
-		OpCommand.opPlayer(player, playerName, opPlayerName);
-	}
-
-	/**
-	 * De-op's a player
-	 * 
-	 * @param player
-	 *            Player who issues. null if unknown
-	 * @param playerName
-	 *            Player's name who issued. "$" for console, "#" for 'system',
-	 *            or just the player's name.
-	 * @param teleportPlayerName
-	 *            Player's name you want to de-op. "*" for everyone.
-	 */
-
-	public static void deopPlayer(Player player, String playerName,
-			String deopPlayerName) {
-		DeopCommand.deopPlayer(player, playerName, deopPlayerName);
+	public static void unbanPlayer(Player player, String playerName,
+			String unbanPlayerName) {
+		UnbanCommand.unbanPlayer(player, playerName, unbanPlayerName);
 	}
 }
