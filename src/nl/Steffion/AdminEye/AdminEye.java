@@ -5,7 +5,7 @@ import nl.Steffion.AdminEye.StefsAPI.PermissionType;
 import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
-import nl.Steffion.AdminEye.Commands.FeedCommand;
+import nl.Steffion.AdminEye.Commands.HungerCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
@@ -94,10 +94,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.CommandHandler.registerCommand("deop", new String[] { "*" },
 				new String[] { "*" }, "deop", "DeOPs a player.",
 				PermissionType.OP, new DeopCommand(), "deop <player name>");
-		StefsAPI.CommandHandler.registerCommand("feed", new String[] { "*" },
-				new String[] { "*" }, "feed", "Fills a players hunger up.",
-				PermissionType.MODERATOR, new FeedCommand(),
-				"feed <player name>");
+		StefsAPI.CommandHandler.registerCommand("hunger", new String[] { "*" },
+				new String[] { "*" }, "hunger", "Sets a players hunger",
+				PermissionType.MODERATOR, new HungerCommand(),
+				"hunger <player name> <amount>");
 		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
 				new String[] { "*" }, "goto",
 				"Teleports the sender to a player.", PermissionType.MODERATOR,
@@ -175,7 +175,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.deop",
 				"made %A%playernames%Nde-opped");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.fed",
-				"has been fed");
+				"set the food of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.went",
 				"went to %A%playernames");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",

@@ -26,11 +26,11 @@ commands:
   deop:
     usage: /<command>
     description: N/A
-  feed:
+  hunger:
     usage: /<command>
     description: N/A
     aliases:
-        - hunger
+        - feed
   goto:
     usage: /<command>
     description: N/A

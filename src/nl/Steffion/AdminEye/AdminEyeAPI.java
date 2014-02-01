@@ -2,7 +2,7 @@ package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
-import nl.Steffion.AdminEye.Commands.FeedCommand;
+import nl.Steffion.AdminEye.Commands.HungerCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
@@ -131,8 +131,8 @@ public class AdminEyeAPI {
 	 */
 
 	public static void feedPlayer(Player player, String playerName,
-			String feedPlayerName) {
-		FeedCommand.feedPlayer(player, playerName, feedPlayerName);
+			String feedPlayerName, String amount) {
+		HungerCommand.feedPlayer(player, playerName, feedPlayerName, amount);
 	}
 
 	/**
