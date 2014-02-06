@@ -30,7 +30,6 @@ public class UnbanCommand extends ExecutedCommand {
 			String unbanPlayerName) {
 		ArrayList<OfflinePlayer> unbanPlayers = AdminEyeUtils
 				.requestFilePlayers(unbanPlayerName);
-
 		if (unbanPlayers == null && unbanPlayerName != null) {
 			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
 					.setMessage("error.playerNotFound", AdminEye.messages)
