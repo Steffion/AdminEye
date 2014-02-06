@@ -22,7 +22,6 @@ public class UnbanCommand extends ExecutedCommand {
 					.changeVariable("syntax", "/unban <player name>").build();
 		} else {
 			unbanPlayer(player, playerName, args[0]);
-
 		}
 		return true;
 	}

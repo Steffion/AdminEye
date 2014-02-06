@@ -65,3 +65,9 @@ commands:
     description: N/A
     aliases:
         - uban
+  mute:
+    usage: /<command>
+    description: N/A
+  unmute:
+    usage: /<command>
+    description: N/A

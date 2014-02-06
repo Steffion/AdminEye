@@ -16,7 +16,7 @@ We will list things which need to be added below.
 - [x] Bring (aka summon). (RandomPanda30)
 - [x] HP (heal command and set health command). (Steffion)
 - [x] Hunger (hunger command) (redo) (RandomPanda30)
-- [ ] Mute. (RandomPanda30)
+- [x] Mute. (Including Temp mute). (RandomPanda30)
 - [ ] Votekick/voteban. (Steffion)
 - [ ] Fly. (RandomPanda30)
 - [ ] Freeze (make them able to move their head though).
