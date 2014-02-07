@@ -173,7 +173,7 @@ public class AdminEyeAPI {
 	}
 
 	/**
-	 * Slays (kills) a player.
+	 * Unmutes a player.
 	 * 
 	 * @param player
 	 *            Player who issued. null if unknown.

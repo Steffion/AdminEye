@@ -18,15 +18,15 @@ public class PlayerFile {
 		StefsAPI.ConfigHandler.displayNewFiles();
 		StefsAPI.ConfigHandler.addDefault(playerFile, "playerName", playerName);
 		StefsAPI.ConfigHandler.addDefault(playerFile, "ban.banned", false);
-		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.muted", true);
 		this.banBanned = this.playerFile.getFile().getBoolean("ban.banned");
+		StefsAPI.ConfigHandler.addDefault(playerFile, "ban.length", 0);
+		this.banLength = this.playerFile.getFile().getInt("ban.length");
 		StefsAPI.ConfigHandler.addDefault(playerFile, "ban.reason", "");
 		this.banReason = this.playerFile.getFile().getString("ban.reason");
-		StefsAPI.ConfigHandler.addDefault(playerFile, "ban.length", 0);
 		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.length", 0);
-		this.banLength = this.playerFile.getFile().getInt("ban.length");
-		this.muteMuted = this.playerFile.getFile().getBoolean("mute.muted");
 		this.muteLength = this.playerFile.getFile().getInt("mute.length");
+		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.muted", true);
+		this.muteMuted = this.playerFile.getFile().getBoolean("mute.muted");
 	}
 
 	public void save() {
