@@ -8,6 +8,7 @@ public class PlayerFile {
 	public Boolean banBanned;
 	public String banReason;
 	public Integer banLength;
+	public Boolean flyFlying;
 	public Boolean muteMuted;
 	public Integer muteLength;
 
@@ -23,6 +24,8 @@ public class PlayerFile {
 		this.banLength = this.playerFile.getFile().getInt("ban.length");
 		StefsAPI.ConfigHandler.addDefault(playerFile, "ban.reason", "");
 		this.banReason = this.playerFile.getFile().getString("ban.reason");
+		StefsAPI.ConfigHandler.addDefault(playerFile, "fly.flying", false);
+		this.flyFlying = this.playerFile.getFile().getBoolean("fly.flying");
 		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.length", 0);
 		this.muteLength = this.playerFile.getFile().getInt("mute.length");
 		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.muted", true);
@@ -31,11 +34,12 @@ public class PlayerFile {
 
 	public void save() {
 		playerFile.getFile().set("playerName", playerName);
-		playerFile.getFile().set("mute.muted", muteMuted);
 		playerFile.getFile().set("ban.banned", banBanned);
 		playerFile.getFile().set("ban.reason", banReason);
 		playerFile.getFile().set("ban.length", banLength);
+		playerFile.getFile().set("fly.flying", flyFlying);
 		playerFile.getFile().set("mute.length", muteLength);
+		playerFile.getFile().set("mute.muted", muteMuted);
 		this.playerFile.save();
 	}
 }
