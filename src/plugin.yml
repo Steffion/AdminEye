@@ -26,6 +26,9 @@ commands:
   deop:
     usage: /<command>
     description: N/A
+  fly:
+    usage: /<command>
+    description: N/A
   hunger:
     usage: /<command>
     description: N/A
@@ -49,6 +52,9 @@ commands:
     aliases:
         - k
         - disconnect
+  mute:
+    usage: /<command>
+    description: N/A
   op:
     usage: /<command>
     description: N/A
@@ -65,6 +71,12 @@ commands:
     description: N/A
     aliases:
         - uban
+  unfly:
+    usage: /<command>
+    description: N/A
+  unmute:
+    usage: /<command>
+    description: N/A
   votekick:
     usage: /<command>
     description: N/A
@@ -82,4 +94,3 @@ commands:
     aliases:
         - yes
         - y
-        

@@ -5,17 +5,22 @@ import nl.Steffion.AdminEye.StefsAPI.PermissionType;
 import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
+import nl.Steffion.AdminEye.Commands.FlyCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.HungerCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.MuteCommand;
 import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 import nl.Steffion.AdminEye.Commands.UnbanCommand;
+import nl.Steffion.AdminEye.Commands.UnflyCommand;
+import nl.Steffion.AdminEye.Commands.UnmuteCommand;
 import nl.Steffion.AdminEye.Commands.VotekickCommand;
 import nl.Steffion.AdminEye.Commands.VotenoCommand;
 import nl.Steffion.AdminEye.Commands.VoteyesCommand;
+import nl.Steffion.AdminEye.Listeners.OnAsyncPlayerChatEvent;
 import nl.Steffion.AdminEye.Listeners.OnPlayerLoginEvent;
 
 import org.bukkit.Bukkit;
@@ -46,6 +51,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 
 		getServer().getPluginManager().registerEvents(new OnPlayerLoginEvent(),
 				this);
+		getServer().getPluginManager().registerEvents(
+				new OnAsyncPlayerChatEvent(), this);
 
 		StefsAPI.ConfigHandler.addDefault(config, "chat.tag",
 				"[" + pdfFile.getName() + "] ");
@@ -101,6 +108,9 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "hunger", "Sets a players hunger.",
 				PermissionType.MODERATOR, new HungerCommand(),
 				"hunger <player name> <amount>");
+		StefsAPI.CommandHandler.registerCommand("fly", new String[] { "*" },
+				new String[] { "*" }, "fly", "Makes a player able to fly.",
+				PermissionType.ADMIN, new FlyCommand(), "fly <player name>");
 		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
 				new String[] { "*" }, "goto",
 				"Teleports the sender to a player.", PermissionType.MODERATOR,
@@ -113,6 +123,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "kick", "Kicks a player.",
 				PermissionType.MODERATOR, new KickCommand(),
 				"kick <player name> [reason]");
+		StefsAPI.CommandHandler.registerCommand("mute", new String[] { "*" },
+				new String[] { "*" }, "mute",
+				"Prevents a player from chatting.", PermissionType.MODERATOR,
+				new MuteCommand(), "mute <player name>");
 		StefsAPI.CommandHandler.registerCommand("op", new String[] { "*" },
 				new String[] { "*" }, "op", "OPs a player.", PermissionType.OP,
 				new OpCommand(), "op <player name>");
@@ -124,6 +138,15 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "slay", "Kills a player.",
 				PermissionType.MODERATOR, new SlayCommand(),
 				"slay <player name>");
+		StefsAPI.CommandHandler.registerCommand("unmute", new String[] { "*" },
+				new String[] { "*" }, "unmute", "Umutes a player.",
+				PermissionType.MODERATOR, new UnmuteCommand(),
+				"mute <player name> <time>");
+		StefsAPI.CommandHandler
+				.registerCommand("unfly", new String[] { "*" },
+						new String[] { "*" }, "unfly",
+						"Stops a player from flying.", PermissionType.ADMIN,
+						new UnflyCommand(), "unfly <player name>");
 		StefsAPI.CommandHandler.registerCommand("unban", new String[] { "*" },
 				new String[] { "*" }, "unban", "Unbans a player.",
 				PermissionType.MODERATOR, new UnbanCommand(),
@@ -147,16 +170,25 @@ public class AdminEye extends JavaPlugin implements Listener {
 				.addDefault(config, "broadcastEnabled.deop", true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.fly", true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.goto", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.kick", true);
+		StefsAPI.ConfigHandler
+				.addDefault(config, "broadcastEnabled.mute", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.op", true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.slap", true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.slay", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unfly",
+				true);
+		StefsAPI.ConfigHandler.addDefault(config,
+				"broadcastEnabled.systemUnmute", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unmuted",
+				true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unban",
 				true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.votekick",
@@ -191,8 +223,12 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"made %A%playernames%Nde-opped");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.fed",
 				"set the food of %A%playernames%Nto %A%amount");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.fly",
+				"made %A%playernames%Nable to fly");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.went",
 				"went to %A%playernames");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.muted",
+				"has muted %A%playernames%N. Mute length:%A%time");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
 				"set the health of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
@@ -205,6 +241,12 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"slapped %A%playernames%Nin their face");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.slayed",
 				"slayed %A%playernames%Nto death");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.systemUnmute",
+				"unmuted %A%playernames");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.unfly",
+				"made %A%playernames%Nunable to fly");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.unmuted",
+				"has unmuted %A%playernames%N");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.unbanned",
 				"made %A%playernames%Nunbanned");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.votekicked",

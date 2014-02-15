@@ -6,21 +6,22 @@ We will list things which need to be added below.
 ### Commands
 ---
 
-- [x] Kick.
-- [x] Ban (including temp ban and message on join).
-- [ ] Mute.
-- [x] Slay.
-- [x] Slap (fly up in the sky).
-- [ ] Votekick/voteban.
-- [x] Goto (aka tp).
-- [x] Bring (aka summon).
-- [ ] Fly.
-- [x] HP (heal command and set health command).
-- [x] Hunger (hunger command) (redo)
+- [x] Kick. (Steffion)
+- [x] Ban (including temp ban and message on join). (Steffion)
+- [x] OP command (nicer interface). (RandomPanda30)
+- [x] Deop command. (RandomPanda30)
+- [x] Slay. (Steffion)
+- [x] Slap (fly up in the sky). (RandomPanda30 & Steffion)
+- [x] Goto (aka tp). (RandomPanda30)
+- [x] Bring (aka summon). (RandomPanda30)
+- [x] HP (heal command and set health command). (Steffion)
+- [x] Hunger (hunger command) (redo) (RandomPanda30)
+- [x] Mute. (Including Temp mute). (RandomPanda30)
+- [x] Votekick. (Steffion)
+- [ ] Voteban. (Steffion)
+- [x] Fly. (RandomPanda30)
 - [ ] Freeze (make them able to move their head though).
-- [x] OP command (nicer interface).
-- [x] Deop command.
-- [ ] Invisibility Command.
+- [ ] Invisibility Command. (RandomPanda30)
 - [ ] Set time command.
 - [ ] Weather command.
 

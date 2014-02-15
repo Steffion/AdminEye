@@ -2,13 +2,17 @@ package nl.Steffion.AdminEye;
 
 import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
+import nl.Steffion.AdminEye.Commands.FlyCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.HungerCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
+import nl.Steffion.AdminEye.Commands.MuteCommand;
 import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 import nl.Steffion.AdminEye.Commands.UnbanCommand;
+import nl.Steffion.AdminEye.Commands.UnflyCommand;
+import nl.Steffion.AdminEye.Commands.UnmuteCommand;
 
 import org.bukkit.entity.Player;
 
@@ -48,6 +52,23 @@ public class AdminEyeAPI {
 	public static void deopPlayer(Player player, String playerName,
 			String deopPlayerName) {
 		DeopCommand.deopPlayer(player, playerName, deopPlayerName);
+	}
+
+	/**
+	 * Makes a player able to fly.
+	 * 
+	 * @param player
+	 *            Player who issued. null for unknown.
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param flyPlayerName
+	 *            Player's name you want to fly. "*" for everyone.
+	 */
+
+	public static void flyPlayer(Player player, String playerName,
+			String flyPlayerName) {
+		FlyCommand.flyPlayer(player, playerName, flyPlayerName);
 	}
 
 	/**
@@ -106,6 +127,23 @@ public class AdminEyeAPI {
 	}
 
 	/**
+	 * Mute's a player.
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param mutePlayerName
+	 *            Player's name you want to mute. "*" for everyone.
+	 */
+
+	public static void mutePlayer(Player player, String playerName,
+			String mutePlayerName, String time) {
+		MuteCommand.mutePlayer(player, playerName, mutePlayerName, time);
+	}
+
+	/**
 	 * Op's a player.
 	 * 
 	 * @param player
@@ -113,7 +151,7 @@ public class AdminEyeAPI {
 	 * @param playerName
 	 *            Player's name who issued. "$" for console, "#" for 'system',
 	 *            or just the player's name.
-	 * @param teleportPlayerName
+	 * @param opPlayerName
 	 *            Player's name you want to op. "*" for everyone.
 	 */
 	public static void opPlayer(Player player, String playerName,
@@ -129,7 +167,7 @@ public class AdminEyeAPI {
 	 * @param playerName
 	 *            Player's name who issued. "$" for console, "#" for 'system',
 	 *            or just the player's name.
-	 * @param teleportPlayerName
+	 * @param slapPlayerName
 	 *            Player's name you want to slap. "*" for everyone.
 	 */
 	public static void slapPlayer(Player player, String playerName,
@@ -154,6 +192,39 @@ public class AdminEyeAPI {
 	}
 
 	/**
+	 * Stops a player from flying.
+	 * 
+	 * @param player
+	 *            Player who issues. null if unknown
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param unflyPlayerName
+	 *            Player's name you want to stop flying. "*" for everyone.
+	 */
+	public static void unflyPlayer(Player player, String playerName,
+			String unflyPlayerName) {
+		UnflyCommand.unflyPlayer(player, playerName, unflyPlayerName);
+	}
+
+	/**
+	 * Unmutes a player.
+	 * 
+	 * @param player
+	 *            Player who issued. null if unknown.
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param unmutePlayerName
+	 *            Player's name you want to slay. "*" for everyone.
+	 */
+
+	public static void unmutePlayer(Player player, String playerName,
+			String unmutePlayerName) {
+		UnmuteCommand.unmutePlayer(player, playerName, unmutePlayerName);
+	}
+
+	/**
 	 * Unbans a player.
 	 * 
 	 * @param player
@@ -168,4 +239,5 @@ public class AdminEyeAPI {
 			String unbanPlayerName) {
 		UnbanCommand.unbanPlayer(player, playerName, unbanPlayerName);
 	}
+
 }
