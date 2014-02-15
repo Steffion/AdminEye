@@ -65,3 +65,21 @@ commands:
     description: N/A
     aliases:
         - uban
+  votekick:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - vk
+  vote_no:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - no
+        - n
+  vote_yes:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - yes
+        - y
+        

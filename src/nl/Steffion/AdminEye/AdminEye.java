@@ -13,6 +13,9 @@ import nl.Steffion.AdminEye.Commands.OpCommand;
 import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 import nl.Steffion.AdminEye.Commands.UnbanCommand;
+import nl.Steffion.AdminEye.Commands.VotekickCommand;
+import nl.Steffion.AdminEye.Commands.VotenoCommand;
+import nl.Steffion.AdminEye.Commands.VoteyesCommand;
 import nl.Steffion.AdminEye.Listeners.OnPlayerLoginEvent;
 
 import org.bukkit.Bukkit;
@@ -125,6 +128,16 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "unban", "Unbans a player.",
 				PermissionType.MODERATOR, new UnbanCommand(),
 				"unban <player name>");
+		StefsAPI.CommandHandler.registerCommand("votekick",
+				new String[] { "*" }, new String[] { "*" }, "votekick",
+				"Votekicks a player.", PermissionType.MODERATOR,
+				new VotekickCommand(), "votekick <player name> [reason]");
+		StefsAPI.CommandHandler.registerCommand("vote_no", null, null,
+				"vote_no", "Vote no on a vote.", PermissionType.PLAYER,
+				new VotenoCommand(), null);
+		StefsAPI.CommandHandler.registerCommand("vote_yes", null, null,
+				"vote_yes", "Vote yes on a vote.", PermissionType.PLAYER,
+				new VoteyesCommand(), null);
 
 		// AdminEye's broadcast enabled.
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.ban", true);
@@ -146,6 +159,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				.addDefault(config, "broadcastEnabled.slay", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unban",
 				true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.votekick",
+				true);
 
 		// Normal qualified messages.
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.reloadedConfigs",
@@ -153,10 +168,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.broadcast",
 				"%TAG%someone%N %message%N.");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.noReasonGiven",
-				"%ANo reason given%N.");
+				"%ANo reason given");
 		StefsAPI.ConfigHandler
 				.addDefault(messages, "normal.banned",
-						"banned %A%playernames%Nwith the reason: %A%reason Ban length:%A%time");
+						"banned %A%playernames%Nwith the reason: %A%reason%N. Ban length:%A%time");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.banreason",
 				"%TAG\n%NYou've been banned! Reason: \n%A");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.banLength",
@@ -192,6 +207,27 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"slayed %A%playernames%Nto death");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.unbanned",
 				"made %A%playernames%Nunbanned");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.votekicked",
+				"votekicked %A%playernames%Nwith the reason: %A%reason");
+		StefsAPI.ConfigHandler
+				.addDefault(
+						messages,
+						"normal.votekick.layout1",
+						"%A%playerName %Ncalled a votekick&uon %A%votekickedPlayers%Nwith the reason:&u%A%reason%N&uvote by clicking on a button:");
+		StefsAPI.ConfigHandler
+				.addDefault(
+						messages,
+						"normal.votekick.layout2",
+						"&a[Yes]**/vote_yes**__%NYou will vote &ayes%N.__; &c[No]**/vote_no**__%NYou will vote &cno%N.__");
+		StefsAPI.ConfigHandler.addDefault(messages,
+				"normal.votekick.notEnoughVoted",
+				"       %E&lX %Nvote failed!&uNot enough players voted.");
+		StefsAPI.ConfigHandler.addDefault(messages,
+				"normal.votekick.yesVotesMustExtend",
+				"       %E&lX %Nvote failed!&uYes votes must extend no votes.");
+		StefsAPI.ConfigHandler.addDefault(messages,
+				"normal.votekick.votePassed",
+				"       &a&lV %Nvote passed!&uUser(s) will be kicked!");
 
 		// Error qualified messages.
 		StefsAPI.ConfigHandler.addDefault(messages, "error.noPermission",
@@ -212,6 +248,13 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%TAG%ENo player found with the name '%A%playername%E'!");
 		StefsAPI.ConfigHandler.addDefault(messages, "error.notANumber",
 				"%TAG%E'%A%number%E' is not a number!");
+		StefsAPI.ConfigHandler.addDefault(messages,
+				"error.voteNoVoteAvailable",
+				"%TAG%EThere is currently no vote available!");
+		StefsAPI.ConfigHandler.addDefault(messages, "error.voteAlreadyVoted",
+				"%TAG%EYou've already voted! You can only vote once.");
+		StefsAPI.ConfigHandler.addDefault(messages, "error.voteAlreadyAVote",
+				"%TAG%EThere is already a vote going on. Please wait.");
 
 		// Logging.
 		StefsAPI.ConfigHandler
