@@ -45,7 +45,8 @@ public class KickCommand extends ExecutedCommand {
 
 		finalReason = finalReason
 				+ (reason == null ? AdminEye.messages.getFile().getString(
-						"normal.noReasonGiven") : reason + "%N.");
+						"normal.noReasonGiven")
+						+ "%N." : reason + "%N.");
 
 		for (Player kickPlayer : kickPlayers) {
 			kickPlayer.kickPlayer(StefsAPI.MessageHandler

@@ -46,7 +46,8 @@ public class BanCommand extends ExecutedCommand {
 		String finalReason = AdminEye.messages.getFile().getString(
 				"normal.banreason")
 				+ (reason == null ? AdminEye.messages.getFile().getString(
-						"normal.noReasonGiven") : reason + "%N.");
+						"normal.noReasonGiven")
+						+ "%N." : reason + "%N.");
 		String bannedPlayers = "";
 
 		String[] splitter = { time };
@@ -133,8 +134,8 @@ public class BanCommand extends ExecutedCommand {
 			playerFile.banBanned = true;
 			playerFile.banLength = lenght;
 			playerFile.banReason = (reason == null ? AdminEye.messages
-					.getFile().getString("normal.noReasonGiven") : reason
-					+ "%N.");
+					.getFile().getString("normal.noReasonGiven" + "%N.")
+					: reason + "%N.");
 			playerFile.save();
 		}
 
@@ -152,7 +153,6 @@ public class BanCommand extends ExecutedCommand {
 				finalTime,
 				"reason",
 				(reason == null ? AdminEye.messages.getFile().getString(
-						"normal.noReasonGiven") : reason.replaceAll("&u", " ")
-						+ "%N."));
+						"normal.noReasonGiven") : reason.replaceAll("&u", " ")));
 	}
 }
