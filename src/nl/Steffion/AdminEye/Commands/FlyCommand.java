@@ -40,14 +40,11 @@ public class FlyCommand extends ExecutedCommand {
 		String flyingPlayers = "";
 
 		for (Player flyPlayer : flyPlayers) {
-
 			PlayerFile playerFile = new PlayerFile(flyPlayer.getName());
 			playerFile.flyFlying = true;
 			playerFile.save();
-			
-			if(flyPlayer.getAllowFlight() == false) {
-				flyPlayer.setAllowFlight(true);
-			}
+
+			flyPlayer.setAllowFlight(true);
 			flyPlayer.setFlying(true);
 
 			flyingPlayers += "%A" + flyPlayer.getName() + "%N, ";

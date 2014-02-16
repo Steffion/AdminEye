@@ -18,7 +18,7 @@ public class UnflyCommand extends ExecutedCommand {
 		if (args.length <= 0) {
 			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
 					.setMessage("error.notEnoughArguments", AdminEye.messages)
-					.changeVariable("syntax", "/fly <player name>").build();
+					.changeVariable("syntax", "/unfly <player name>").build();
 		} else {
 			unflyPlayer(player, playerName, args[0]);
 		}
@@ -40,15 +40,12 @@ public class UnflyCommand extends ExecutedCommand {
 		String unflyingPlayers = "";
 
 		for (Player unflyPlayer : unflyPlayers) {
-
 			PlayerFile playerFile = new PlayerFile(unflyPlayer.getName());
 			playerFile.flyFlying = true;
 			playerFile.save();
 
-			if (unflyPlayer.getAllowFlight() == true) {
-				unflyPlayer.setAllowFlight(false);
-			}
 			unflyPlayer.setFlying(false);
+			unflyPlayer.setAllowFlight(false);
 
 			unflyingPlayers += "%A" + unflyPlayer.getName() + "%N, ";
 		}

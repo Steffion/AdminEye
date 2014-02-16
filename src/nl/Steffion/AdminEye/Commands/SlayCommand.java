@@ -24,6 +24,7 @@ public class SlayCommand extends ExecutedCommand {
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void slayPlayer(Player player, String playerName,
 			String slayPlayerName) {
 		ArrayList<Player> slayPlayers = AdminEyeUtils
