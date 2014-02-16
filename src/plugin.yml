@@ -82,6 +82,9 @@ commands:
   unfly:
     usage: /<command>
     description: N/A
+  unfreeze:
+    usage: /<command>
+    description: N/A
   unmute:
     usage: /<command>
     description: N/A

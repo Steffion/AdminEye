@@ -18,6 +18,7 @@ import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 import nl.Steffion.AdminEye.Commands.UnbanCommand;
 import nl.Steffion.AdminEye.Commands.UnflyCommand;
+import nl.Steffion.AdminEye.Commands.UnfreezeCommand;
 import nl.Steffion.AdminEye.Commands.UnmuteCommand;
 import nl.Steffion.AdminEye.Commands.VotekickCommand;
 import nl.Steffion.AdminEye.Commands.VotenoCommand;
@@ -157,6 +158,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 				new String[] { "*" }, "slay", "Kills a player.",
 				PermissionType.MODERATOR, new SlayCommand(),
 				"slay <player name>");
+		StefsAPI.CommandHandler.registerCommand("unfreeze",
+				new String[] { "*" }, new String[] { "*" }, "unfreeze",
+				"Lets a player move again.", PermissionType.MODERATOR,
+				new UnfreezeCommand(), "unfreeze <player name>");
 		StefsAPI.CommandHandler.registerCommand("unmute", new String[] { "*" },
 				new String[] { "*" }, "unmute", "Unmutes a player.",
 				PermissionType.MODERATOR, new UnmuteCommand(),
@@ -206,6 +211,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.slay", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unfly",
+				true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unfreeze",
 				true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unmuted",
 				true);
@@ -267,6 +274,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"slayed %A%playernames%Nto death");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.unfly",
 				"made %A%playernames%Nunable to fly");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.unfreeze",
+				"made %A%playernames%Nunfrozen");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.unmuted",
 				"made %A%playernames%Nunmuted");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.unbanned",

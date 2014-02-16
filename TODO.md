@@ -20,7 +20,7 @@ We will list things which need to be added below.
 - [x] Votekick. (Steffion)
 - [ ] Voteban. (Steffion)
 - [x] Fly. (RandomPanda30)
-- [ ] Freeze (make them able to move their head though).
+- [x] Freeze (make them able to move their head though).
 - [ ] Invisibility Command. (RandomPanda30)
 - [ ] Set time command.
 - [ ] Weather command.

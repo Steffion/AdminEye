@@ -13,6 +13,7 @@ import nl.Steffion.AdminEye.Commands.SlapCommand;
 import nl.Steffion.AdminEye.Commands.SlayCommand;
 import nl.Steffion.AdminEye.Commands.UnbanCommand;
 import nl.Steffion.AdminEye.Commands.UnflyCommand;
+import nl.Steffion.AdminEye.Commands.UnfreezeCommand;
 import nl.Steffion.AdminEye.Commands.UnmuteCommand;
 
 import org.bukkit.entity.Player;
@@ -71,7 +72,7 @@ public class AdminEyeAPI {
 			String flyPlayerName) {
 		FlyCommand.flyPlayer(player, playerName, flyPlayerName);
 	}
-	
+
 	/**
 	 * Stops a player from moving.
 	 * 
@@ -220,9 +221,27 @@ public class AdminEyeAPI {
 	 * @param unflyPlayerName
 	 *            Player's name you want to stop flying. "*" for everyone.
 	 */
+
 	public static void unflyPlayer(Player player, String playerName,
 			String unflyPlayerName) {
 		UnflyCommand.unflyPlayer(player, playerName, unflyPlayerName);
+	}
+
+	/**
+	 * Unfreeze's a player.
+	 * 
+	 * @param player
+	 *            Player who issued. null if unknown.
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param unfreezePlayerName
+	 *            Player's name you want to unfreeze. "*" for everyone.
+	 */
+
+	public static void unfreezePlayer(Player player, String playerName,
+			String unfreezePlayerName) {
+		UnfreezeCommand.unfreezePlayer(player, playerName, unfreezePlayerName);
 	}
 
 	/**
