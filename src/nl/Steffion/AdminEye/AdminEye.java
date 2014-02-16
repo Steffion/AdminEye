@@ -55,7 +55,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 
 		getServer().getPluginManager().registerEvents(
 				new OnAsyncPlayerChatEvent(), this);
-		getServer().getPluginManager().registerEvents(new OnPlayerMoveEvent(), 
+		getServer().getPluginManager().registerEvents(new OnPlayerMoveEvent(),
 				this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(),
 				this);
@@ -122,6 +122,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 						"Makes a player able to fly.",
 						PermissionType.MODERATOR, new FlyCommand(),
 						"fly <player name>");
+		StefsAPI.CommandHandler.registerCommand("freeze", new String[] { "*" },
+				new String[] { "*" }, "freeze",
+				"Prevents a player from moving.", PermissionType.MODERATOR,
+				new FreezeCommand(), "freeze <player name>");
 		StefsAPI.CommandHandler.registerCommand("gamemode",
 				new String[] { "*" }, new String[] { "*" }, "gamemode",
 				"Sets a players gamemode.", PermissionType.MODERATOR,
@@ -185,7 +189,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.fly", true);
-		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.freeze", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.freeze",
+				true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.gamemode",
 				true);
 		StefsAPI.ConfigHandler
