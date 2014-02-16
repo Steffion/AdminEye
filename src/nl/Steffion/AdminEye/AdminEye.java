@@ -80,6 +80,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "chat.everyone", "&3Everyone");
 
+		StefsAPI.ConfigHandler.addDefault(config, "metrics.enabled", true);
+
 		// AdminEye default commands.
 		StefsAPI.CommandHandler.registerCommand(pdfFile.getName(), null, null,
 				"info", "Displays the plugin's info.", PermissionType.ALL,
@@ -345,6 +347,30 @@ public class AdminEye extends JavaPlugin implements Listener {
 		AdminEye.checkPlayerFiles();
 
 		StefsAPI.enableAPI();
+
+		if (config.getFile().getBoolean("metrics.enabled")) {
+			try {
+				Metrics metrics = new Metrics(plugin);
+				metrics.start();
+				StefsAPI.MessageHandler.buildMessage().addSender("$")
+						.setMessage("%TAGSending %AMCStats%N to their server!")
+						.build();
+			} catch (Exception e) {
+				StefsAPI.MessageHandler
+						.buildMessage()
+						.addSender("$")
+						.setMessage(
+								"%TAG%EUnable to send %AMCStats %Eto their server. Something went wrong ;(!")
+						.build();
+			}
+		} else {
+			StefsAPI.MessageHandler
+					.buildMessage()
+					.addSender("$")
+					.setMessage(
+							"%TAG%EUnable to send %AMCStats %Eto their server. Is it disabled?")
+					.build();
+		}
 
 		StefsAPI.MessageHandler
 				.buildMessage()
