@@ -46,8 +46,8 @@ public class UnfreezeCommand extends ExecutedCommand {
 
 			unfrozenPlayers += "%A" + unfreezePlayer.getName() + "%N, ";
 		}
-		
-		unfrozenPlayers = (unfrozenPlayers.equals("*") ? unfrozenPlayers = AdminEye.config
+
+		unfrozenPlayers = (unfreezePlayerName.equals("*") ? unfrozenPlayers = AdminEye.config
 				.getFile().getString("chat.everyone") + "%N, "
 				: unfrozenPlayers);
 

@@ -46,7 +46,7 @@ public class FreezeCommand extends ExecutedCommand {
 			frozenPlayers += "%A" + freezePlayer.getName() + "%N, ";
 		}
 
-		frozenPlayers = (frozenPlayers.equals("*") ? frozenPlayers = AdminEye.config
+		frozenPlayers = (freezePlayerName.equals("*") ? frozenPlayers = AdminEye.config
 				.getFile().getString("chat.everyone") + "%N, "
 				: frozenPlayers);
 
