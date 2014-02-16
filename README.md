@@ -1,4 +1,5 @@
 AdminEye
 ========
 
-Admin commands plugin for the Bukkit Development. Called AdminEye.
+Easy and powerful server administrating plugin.
+A Bukkit plugin, hosted on Spigot.org.
