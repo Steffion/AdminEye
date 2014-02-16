@@ -18,9 +18,11 @@ We will list things which need to be added below.
 - [x] Hunger (hunger command) (redo) (RandomPanda30)
 - [x] Mute. (Including Temp mute). (RandomPanda30)
 - [x] Votekick. (Steffion)
-- [ ] Voteban. (Steffion)
 - [x] Fly. (RandomPanda30)
 - [x] Freeze (make them able to move their head though).
+
+//Will come later.
+- [ ] Voteban. (Steffion)
 - [ ] Invisibility Command. (RandomPanda30)
 - [ ] Set time command.
 - [ ] Weather command.
