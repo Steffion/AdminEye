@@ -21,6 +21,7 @@ import nl.Steffion.AdminEye.Commands.VotekickCommand;
 import nl.Steffion.AdminEye.Commands.VotenoCommand;
 import nl.Steffion.AdminEye.Commands.VoteyesCommand;
 import nl.Steffion.AdminEye.Listeners.OnAsyncPlayerChatEvent;
+import nl.Steffion.AdminEye.Listeners.OnPlayerJoinEvent;
 import nl.Steffion.AdminEye.Listeners.OnPlayerLoginEvent;
 
 import org.bukkit.Bukkit;
@@ -49,10 +50,12 @@ public class AdminEye extends JavaPlugin implements Listener {
 		config = StefsAPI.ConfigHandler.createConfig("config");
 		messages = StefsAPI.ConfigHandler.createConfig("messages");
 
-		getServer().getPluginManager().registerEvents(new OnPlayerLoginEvent(),
-				this);
 		getServer().getPluginManager().registerEvents(
 				new OnAsyncPlayerChatEvent(), this);
+		getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(),
+				this);
+		getServer().getPluginManager().registerEvents(new OnPlayerLoginEvent(),
+				this);
 
 		StefsAPI.ConfigHandler.addDefault(config, "chat.tag",
 				"[" + pdfFile.getName() + "] ");
@@ -144,7 +147,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.CommandHandler.registerCommand("unmute", new String[] { "*" },
 				new String[] { "*" }, "unmute", "Unmutes a player.",
 				PermissionType.MODERATOR, new UnmuteCommand(),
-				"mute <player name> <time>");
+				"unmute <player name>");
 		StefsAPI.CommandHandler.registerCommand("unfly", new String[] { "*" },
 				new String[] { "*" }, "unfly", "Stops a player from flying.",
 				PermissionType.MODERATOR, new UnflyCommand(),
