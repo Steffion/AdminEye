@@ -29,6 +29,7 @@ public class HPCommand extends ExecutedCommand {
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void setHealth(Player player, String playerName,
 			String healPlayerName, String amount) {
 		ArrayList<Player> healPlayers = AdminEyeUtils
