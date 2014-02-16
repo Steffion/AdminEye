@@ -6,6 +6,7 @@ import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.FlyCommand;
+import nl.Steffion.AdminEye.Commands.GamemodeCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.HungerCommand;
@@ -117,6 +118,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 						"Makes a player able to fly.",
 						PermissionType.MODERATOR, new FlyCommand(),
 						"fly <player name>");
+		StefsAPI.CommandHandler.registerCommand("gamemode",
+				new String[] { "*" }, new String[] { "*" }, "gamemode",
+				"Sets a players gamemode.", PermissionType.MODERATOR,
+				new GamemodeCommand(), "gamemode <player name> <gamemode>");
 		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
 				new String[] { "*" }, "goto",
 				"Teleports the sender to a player.", PermissionType.MODERATOR,
@@ -176,6 +181,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.fly", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.gamemode",
+				true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.goto", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
@@ -190,8 +197,6 @@ public class AdminEye extends JavaPlugin implements Listener {
 				.addDefault(config, "broadcastEnabled.slay", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unfly",
 				true);
-		StefsAPI.ConfigHandler.addDefault(config,
-				"broadcastEnabled.systemUnmute", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unmuted",
 				true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.unban",
@@ -230,16 +235,18 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"set the food of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.fly",
 				"made %A%playernames%Nable to fly");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.setgamemode",
+				"set the gamemode of %A%playernames%Nto %A%gamemode");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.went",
 				"went to %A%playernames");
-		StefsAPI.ConfigHandler.addDefault(messages, "normal.muted",
-				"made %A%playernames%Nmuted. Mute length:%A%time");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.sethealth",
 				"set the health of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kicked",
 				"kicked %A%playernames%Nwith the reason: %A%reason");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.kickreason",
 				"%TAG\n%NYou've been kicked! Reason: \n%A");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.muted",
+				"made %A%playernames%Nmuted. Mute length:%A%time");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.op",
 				"made %A%playernames%Nan operator");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.slapped",
@@ -293,6 +300,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"%TAG%ENo player found with the name '%A%playername%E'!");
 		StefsAPI.ConfigHandler.addDefault(messages, "error.notANumber",
 				"%TAG%E'%A%number%E' is not a number!");
+		StefsAPI.ConfigHandler.addDefault(messages, "error.notAGamemode",
+				"%TAG%E'%A%gamemode%E' is not a gamemode type!");
 		StefsAPI.ConfigHandler.addDefault(messages, "error.muted",
 				"%TAG%EYou're muted! You can't talk for:%time%E.");
 		StefsAPI.ConfigHandler.addDefault(messages,

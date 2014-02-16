@@ -29,6 +29,11 @@ commands:
   fly:
     usage: /<command>
     description: N/A
+  gamemode:
+    usage: /<command>
+    description: N/A
+    aliases:
+        - gm
   hunger:
     usage: /<command>
     description: N/A

@@ -2,7 +2,9 @@ package nl.Steffion.AdminEye;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -109,6 +111,34 @@ public class AdminEyeUtils {
 			return true;
 		} catch (NumberFormatException e) {
 			return false;
+		}
+	}
+
+	public static boolean isGamemode(String gamemode) {
+		if (gamemode.equalsIgnoreCase("survival")
+				|| gamemode.equalsIgnoreCase("0")
+				|| gamemode.equalsIgnoreCase("creative")
+				|| gamemode.equalsIgnoreCase("1")
+				|| gamemode.equalsIgnoreCase("adventure")
+				|| gamemode.equalsIgnoreCase("2")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static GameMode getGameMode(String gamemode) {
+		if (gamemode.equalsIgnoreCase("survival")
+				|| gamemode.equalsIgnoreCase("0")) {
+			return GameMode.SURVIVAL;
+		} else if (gamemode.equalsIgnoreCase("creative")
+				|| gamemode.equalsIgnoreCase("1")) {
+			return GameMode.CREATIVE;
+		} else if (gamemode.equalsIgnoreCase("adventure")
+				|| gamemode.equalsIgnoreCase("2")) {
+			return GameMode.ADVENTURE;
+		} else {
+			return GameMode.SURVIVAL;
 		}
 	}
 
