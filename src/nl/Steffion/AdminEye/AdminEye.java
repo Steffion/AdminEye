@@ -291,7 +291,7 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler.addDefault(messages, "error.notANumber",
 				"%TAG%E'%A%number%E' is not a number!");
 		StefsAPI.ConfigHandler.addDefault(messages, "error.muted",
-				"%TAG%EYou're muted! You can't talk for: %time%E.");
+				"%TAG%EYou're muted! You can't talk for:%time%E.");
 		StefsAPI.ConfigHandler.addDefault(messages,
 				"error.voteNoVoteAvailable",
 				"%TAG%EThere is currently no vote available!");
