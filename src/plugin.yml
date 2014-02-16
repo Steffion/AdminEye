@@ -29,6 +29,9 @@ commands:
   fly:
     usage: /<command>
     description: N/A
+  freeze:
+    usage: /<command>
+    description: N/A
   hunger:
     usage: /<command>
     description: N/A

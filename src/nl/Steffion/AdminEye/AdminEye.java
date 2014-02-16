@@ -6,6 +6,7 @@ import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.BringCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.FlyCommand;
+import nl.Steffion.AdminEye.Commands.FreezeCommand;
 import nl.Steffion.AdminEye.Commands.GotoCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.HungerCommand;
@@ -22,6 +23,7 @@ import nl.Steffion.AdminEye.Commands.VotenoCommand;
 import nl.Steffion.AdminEye.Commands.VoteyesCommand;
 import nl.Steffion.AdminEye.Listeners.OnAsyncPlayerChatEvent;
 import nl.Steffion.AdminEye.Listeners.OnPlayerLoginEvent;
+import nl.Steffion.AdminEye.Listeners.OnPlayerMoveEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -53,6 +55,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				this);
 		getServer().getPluginManager().registerEvents(
 				new OnAsyncPlayerChatEvent(), this);
+		getServer().getPluginManager().registerEvents(new OnPlayerMoveEvent(),
+				this);
 
 		StefsAPI.ConfigHandler.addDefault(config, "chat.tag",
 				"[" + pdfFile.getName() + "] ");
@@ -111,6 +115,10 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.CommandHandler.registerCommand("fly", new String[] { "*" },
 				new String[] { "*" }, "fly", "Makes a player able to fly.",
 				PermissionType.ADMIN, new FlyCommand(), "fly <player name>");
+		StefsAPI.CommandHandler.registerCommand("freeze", new String[] { "*" },
+				new String[] { "*" }, "freeze",
+				"Prevents a player from moving.", PermissionType.ADMIN,
+				new FreezeCommand(), "freeze <player name>");
 		StefsAPI.CommandHandler.registerCommand("goto", new String[] { "*" },
 				new String[] { "*" }, "goto",
 				"Teleports the sender to a player.", PermissionType.MODERATOR,
@@ -171,6 +179,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.feed", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.fly", true);
+		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.freeze",
+				true);
 		StefsAPI.ConfigHandler
 				.addDefault(config, "broadcastEnabled.goto", true);
 		StefsAPI.ConfigHandler.addDefault(config, "broadcastEnabled.hp", true);
@@ -225,6 +235,8 @@ public class AdminEye extends JavaPlugin implements Listener {
 				"set the food of %A%playernames%Nto %A%amount");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.fly",
 				"made %A%playernames%Nable to fly");
+		StefsAPI.ConfigHandler.addDefault(messages, "normal.freeze",
+				"has froze %A%playernames%Nin place");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.went",
 				"went to %A%playernames");
 		StefsAPI.ConfigHandler.addDefault(messages, "normal.muted",

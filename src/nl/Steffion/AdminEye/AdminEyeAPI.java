@@ -3,6 +3,7 @@ package nl.Steffion.AdminEye;
 import nl.Steffion.AdminEye.Commands.BanCommand;
 import nl.Steffion.AdminEye.Commands.DeopCommand;
 import nl.Steffion.AdminEye.Commands.FlyCommand;
+import nl.Steffion.AdminEye.Commands.FreezeCommand;
 import nl.Steffion.AdminEye.Commands.HPCommand;
 import nl.Steffion.AdminEye.Commands.HungerCommand;
 import nl.Steffion.AdminEye.Commands.KickCommand;
@@ -69,6 +70,23 @@ public class AdminEyeAPI {
 	public static void flyPlayer(Player player, String playerName,
 			String flyPlayerName) {
 		FlyCommand.flyPlayer(player, playerName, flyPlayerName);
+	}
+	
+	/**
+	 * Stops a player from moving.
+	 * 
+	 * @param player
+	 *            Player who issued. null for unknown.
+	 * @param playerName
+	 *            Player's name who issued. "$" for console, "#" for 'system',
+	 *            or just the player's name.
+	 * @param freezePlayerName
+	 *            Player's name you want to freeze. "*" for everyone.
+	 */
+
+	public static void freezePlayer(Player player, String playerName,
+			String freezePlayerName) {
+		FreezeCommand.freezePlayer(player, playerName, freezePlayerName);
 	}
 
 	/**
