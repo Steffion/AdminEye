@@ -40,14 +40,14 @@ public class UnmuteCommand extends ExecutedCommand {
 
 		String unmutedPlayers = "";
 		for (OfflinePlayer unmutePlayer : unmutePlayers) {
-			unmutedPlayers += "%A" + unmutePlayer.getName() + "%N";
+			unmutedPlayers += "%A" + unmutePlayer.getName() + "%N, ";
 			PlayerFile playerFile = new PlayerFile(unmutePlayer.getName());
 			playerFile.muteMuted = false;
 			playerFile.save();
 		}
 
 		unmutedPlayers = (unmutePlayerName.equals("*") ? unmutedPlayers = AdminEye.config
-				.getFile().getString("chat.everyone") + "%N"
+				.getFile().getString("chat.everyone") + "%N, "
 				: unmutedPlayers);
 
 		AdminEye.broadcastAdminEyeMessage(playerName, "unmuted", "unmuted",

@@ -19,7 +19,8 @@ public class MuteCommand extends ExecutedCommand {
 		if (args.length <= 0) {
 			StefsAPI.MessageHandler.buildMessage().addSender(playerName)
 					.setMessage("error.notEnoughArguments", AdminEye.messages)
-					.changeVariable("syntax", "/mute <player name>").build();
+					.changeVariable("syntax", "/mute <player name> [time]")
+					.build();
 		} else if (args.length <= 1) {
 			mutePlayer(player, playerName, args[0], "0");
 		} else {
@@ -112,8 +113,7 @@ public class MuteCommand extends ExecutedCommand {
 		}
 
 		for (Player mutePlayer : mutePlayers) {
-
-			mutedPlayers += "%A" + mutePlayer.getName() + "%N";
+			mutedPlayers += "%A" + mutePlayer.getName() + "%N, ";
 
 			PlayerFile playerFile = new PlayerFile(mutePlayer.getName());
 			playerFile.muteMuted = true;
@@ -122,7 +122,7 @@ public class MuteCommand extends ExecutedCommand {
 		}
 
 		mutedPlayers = (mutePlayerName.equals("*") ? mutedPlayers = AdminEye.config
-				.getFile().getString("chat.everyone") + "%N"
+				.getFile().getString("chat.everyone") + "%N, "
 				: mutedPlayers);
 
 		AdminEye.broadcastAdminEyeMessage(playerName, "muted", "mute",
