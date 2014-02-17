@@ -31,7 +31,7 @@ public class PlayerFile {
 		this.frozenFroze = this.playerFile.getFile().getBoolean("frozen.froze");
 		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.length", 0);
 		this.muteLength = this.playerFile.getFile().getInt("mute.length");
-		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.muted", true);
+		StefsAPI.ConfigHandler.addDefault(playerFile, "mute.muted", false);
 		this.muteMuted = this.playerFile.getFile().getBoolean("mute.muted");
 	}
 
